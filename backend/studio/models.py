@@ -6,5 +6,5 @@ class Studio(models.Model):
     first_name = models.CharField (max_length=255)
     last_name = models.CharField (max_length=255)
     address = models.CharField (max_length=500)
-    phone_number = models.IntegerField()
+    phone_number = models.BigIntegerField()
     email = models.EmailField(max_length=255)
