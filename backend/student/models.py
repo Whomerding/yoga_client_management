@@ -10,6 +10,6 @@ class Student(models.Model):
     address = models.CharField (max_length=500)
     phone_number = models.BigIntegerField()
     email = models.EmailField(max_length=255)
-    current_class_package = models.CharField (max_length=255, null=True)
-    classes_remaining = models.IntegerField(null=True)
+    current_class_package = models.CharField (max_length=255, null=True, blank=True)
+    classes_remaining = models.IntegerField(null=True, blank=True)
     studio = models.ForeignKey(Studio, on_delete=models.CASCADE)
