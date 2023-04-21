@@ -9,8 +9,11 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 @api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticated])
 def create_studio(request):
-    if request.method == 'POST':
-        studio = Studio.objects.all ()
+    if request.method == "GET":
+        studio = Studio.objects.all()
+        serializer = StudioSerializer(studio, many = True)
+        return Response(serializer.data)
+    elif request.method == 'POST':
         serializer = StudioSerializer(data=request.data)
         serializer.is_valid (raise_exception=True)
         serializer.save ()
@@ -31,3 +34,18 @@ def studio_detail(request, pk):
     elif request.method == 'DELETE':
         studio.delete()
         return Response (status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['PATCH'])
+@permission_classes([IsAuthenticated])
+def update_studio(request, pk):
+    try:
+        studio = Studio.objects.get(pk=pk)
+    except Studio.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    serializer = StudioSerializer(studio, data=request.data, partial=True)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    else:
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

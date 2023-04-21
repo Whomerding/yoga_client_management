@@ -6,3 +6,4 @@ class ClassesTakenSerializer(serializers.ModelSerializer):
         model = ClassesTaken
         fields = ['classes_taken', 'student']
         depth = 1 
+    student = serializers.IntegerField(write_only=True)

@@ -9,7 +9,7 @@ from .models import Classes
 def class_list(request):
     if request.method == "GET":
         class_packages = Classes.objects.all()
-        serializer = ClassesSerializer(songs, many = True)
+        serializer = ClassesSerializer(class_packages, many = True)
         return Response(serializer.data)
     elif request.method == "POST":
         serializer = ClassesSerializer(data=request.data)
