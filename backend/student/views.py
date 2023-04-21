@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404
-from django.utils import timezone
+from datetime import date, timedelta
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework import status
@@ -11,15 +11,18 @@ from rest_framework.permissions import IsAuthenticated
 @permission_classes([IsAuthenticated])
 def student(request):
     if request.method == "GET":
+        startdate=date.today()
+        thirty_days_ago=startdate-timedelta(days=30)
+        print(thirty_days_ago)
         student_studio=request.query_params.get('studio')
         new_student=request.query_params.get('new')
         sort=request.query_params.get('sort')
-        print (new_student)
+    
         student = Student.objects.all()
         if student_studio:
             student = student.filter(studio__id=student_studio)
         if new_student:
-            student = student.filter(student__date_joined_lte=(timezone.now()-timezone.timedelta(days=30)))
+            student = student.filter(date_joined__gte=thirty_days_ago)   
         if sort:
             student=student.order_by(sort)[0:10]
         serializer = StudentSerializer(student, many = True)

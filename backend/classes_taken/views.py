@@ -10,7 +10,13 @@ from rest_framework.permissions import IsAuthenticated
 @permission_classes([IsAuthenticated])
 def class_log(request):
     if request.method == "GET":
+        students_classes_taken=request.query_params.get('id')
+        sort=request.query_params.get('sort')
         classes_taken = ClassesTaken.objects.all()
+        if students_classes_taken:
+            classes_taken=classes_taken.filter(student__id=students_classes_taken)
+        if sort:
+            classes_taken=classes_taken.order_by(sort)[0:10]
         serializer = ClassesTakenSerializer(classes_taken, many = True)
         return Response(serializer.data)
     elif request.method == 'POST':
