@@ -12,4 +12,5 @@ class Student(models.Model):
     email = models.EmailField(max_length=255)
     current_class_package = models.CharField (max_length=255, null=True, blank=True)
     classes_remaining = models.IntegerField(null=True, blank=True)
+    status=models.CharField(max_length=255, blank=True, null=True)
     studio = models.ForeignKey(Studio, on_delete=models.CASCADE)
