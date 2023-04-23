@@ -13,7 +13,6 @@ def student(request):
     if request.method == "GET":
         startdate=date.today()
         thirty_days_ago=startdate-timedelta(days=30)
-        print(thirty_days_ago)
         student_studio=request.query_params.get('studio')
         new_student=request.query_params.get('new')
         sort=request.query_params.get('sort')
