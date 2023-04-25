@@ -10,7 +10,7 @@ const RegisterPage = () => {
     password: "",
     firstName: "",
     lastName: "",
-    isOwner: "",
+    isOwner: false,
   };
 
   const [formData, checked, handleInputChange, handleSubmit] = useCustomForm(
@@ -85,5 +85,4 @@ const RegisterPage = () => {
     </div>
   );
 };
-
 export default RegisterPage;
