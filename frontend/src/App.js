@@ -6,7 +6,8 @@ import "./App.css";
 import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
-
+import StudioRegisterPage from './pages/StudioRegisterPage/StudioRegisterPage'
+import StudentRegisterPage from './pages/StudentRegisterPage/StudentRegisterPage'
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
@@ -27,6 +28,8 @@ function App() {
             </PrivateRoute>
           }
         />
+        <Route path = "/registerstudio" element={<PrivateRoute><StudioRegisterPage /></PrivateRoute>}/>
+        <Route path = "/registerstudent" element={<PrivateRoute><StudentRegisterPage /></PrivateRoute>}/>
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
       </Routes>

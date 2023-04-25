@@ -4,6 +4,8 @@ import useCustomForm from "../../hooks/useCustomForm";
 
 const RegisterPage = () => {
   const { registerUser } = useContext(AuthContext);
+  
+
   const defaultValues = {
     username: "",
     email: "",
@@ -13,7 +15,7 @@ const RegisterPage = () => {
     isOwner: false,
   };
 
-  const [formData, checked, handleInputChange, handleSubmit] = useCustomForm(
+  const [formData, handleInputChange, handleSubmit] = useCustomForm(
     defaultValues,
     registerUser
     );
@@ -70,19 +72,23 @@ const RegisterPage = () => {
           special characters!
         </p>
         <label>
+        My Value
+        </label>
         <input
           type="checkbox"
-          checked={checked}
+          checked={formData.isOwner}
+          value={formData.isOwner}
           name="isOwner"
-          onChange={handleInputChange}
+          
+          onChange={handleInputChange} 
         />
-        My Value
-      </label>
+        
 
-      <p>Is "My Value" checked? {checked.toString()}</p>
+      <p>Is "My Value" checked? {formData.isOwner}</p>
         <button>Register!</button>
       </form>
     </div>
   );
 };
+
 export default RegisterPage;

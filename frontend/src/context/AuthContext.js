@@ -15,7 +15,9 @@ function setUserObject(user) {
     username: user.username,
     id: user.user_id,
     first_name: user.first_name,
-    is_owner: user.is_owner
+    last_name:user.last_name,
+    is_owner: user.is_owner,
+    email: user.email,
   };
 }
 
@@ -38,6 +40,7 @@ export const AuthProvider = ({ children }) => {
         last_name: registerData.lastName,
         is_owner: registerData.isOwner,
       };
+      debugger
       let response = await axios.post(`${BASE_URL}/register/`, finalData);
       if (response.status === 201) {
         console.log("Successful registration! Log in to access token");
@@ -57,6 +60,7 @@ export const AuthProvider = ({ children }) => {
       if (response.status === 200) {
         localStorage.setItem("token", JSON.stringify(response.data.access));
         setToken(JSON.parse(localStorage.getItem("token")));
+        //loggedInUser will have the "isOwner" data
         let loggedInUser = jwtDecode(response.data.access);
         setUser(setUserObject(loggedInUser));
         setIsServerError(false);
