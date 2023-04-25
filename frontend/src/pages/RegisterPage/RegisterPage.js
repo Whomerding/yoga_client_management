@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import AuthContext from "../../context/AuthContext";
 import useCustomForm from "../../hooks/useCustomForm";
 
@@ -10,12 +10,13 @@ const RegisterPage = () => {
     password: "",
     firstName: "",
     lastName: "",
+    isOwner: "",
   };
-  const [formData, handleInputChange, handleSubmit] = useCustomForm(
+
+  const [formData, checked, handleInputChange, handleSubmit] = useCustomForm(
     defaultValues,
     registerUser
-  );
-
+    );
   return (
     <div className="container">
       <form className="form" onSubmit={handleSubmit}>
@@ -26,7 +27,7 @@ const RegisterPage = () => {
             name="username"
             value={formData.username}
             onChange={handleInputChange}
-          />
+            />
         </label>
         <label>
           First Name:{" "}
@@ -35,7 +36,7 @@ const RegisterPage = () => {
             name="firstName"
             value={formData.firstName}
             onChange={handleInputChange}
-          />
+            />
         </label>
         <label>
           Last Name:{" "}
@@ -44,7 +45,7 @@ const RegisterPage = () => {
             name="lastName"
             value={formData.lastName}
             onChange={handleInputChange}
-          />
+            />
         </label>
         <label>
           Email:{" "}
@@ -53,7 +54,7 @@ const RegisterPage = () => {
             name="email"
             value={formData.email}
             onChange={handleInputChange}
-          />
+            />
         </label>
         <label>
           Password:{" "}
@@ -62,12 +63,23 @@ const RegisterPage = () => {
             name="password"
             value={formData.password}
             onChange={handleInputChange}
-          />
+            />
         </label>
         <p style={{ fontSize: "12px" }}>
           NOTE: Make this an uncommon password with characters, numbers, and
           special characters!
         </p>
+        <label>
+        <input
+          type="checkbox"
+          checked={checked}
+          name="isOwner"
+          onChange={handleInputChange}
+        />
+        My Value
+      </label>
+
+      <p>Is "My Value" checked? {checked.toString()}</p>
         <button>Register!</button>
       </form>
     </div>
