@@ -1,7 +1,12 @@
-const StudentRegisterPage = () => {
-    return ( 
-        <h1>TESTING STUDENT PAGE</h1>
+
+import StudentForm from "../../components/StudentForm/StudentForm"
+const StudioRegisterPage = () => {
+
+    
+    return (
+         
+        <StudentForm/>
      );
 }
  
-export default StudentRegisterPage;
+export default StudioRegisterPage;
