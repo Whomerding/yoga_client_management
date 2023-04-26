@@ -18,7 +18,7 @@ function UserOwnerRedirectPage() {
       }, []);
 
     function getStudioOrOwner (){
-        {user.is_owner ===true? (getStudio()): (getStudent())}
+        {user.is_owner ==true? (getStudio()): (getStudent())}
     }
     async function getStudent(){
         const response = await axios.get(`http://127.0.0.1:8000/api/student`, {headers: {Authorization:"Bearer " + token}})

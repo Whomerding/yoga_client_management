@@ -64,7 +64,7 @@ export const AuthProvider = ({ children }) => {
         let loggedInUser = jwtDecode(response.data.access);
         setUser(setUserObject(loggedInUser));
         setIsServerError(false);
-        navigate("/userownerredirectpage");
+        navigate("/registerstudio");
       } else {
         navigate("/register");
       }

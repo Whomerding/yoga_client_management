@@ -18,6 +18,9 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         token["last_name"] = user.last_name
         token["is_owner"] = user.is_owner
         token["email"]=user.email
+        token["student_id"]=user.student_id
+        token["studio_id"]=user.studio_id
+    
         return token
 
 
@@ -28,13 +31,19 @@ class RegistrationSerializer(serializers.ModelSerializer):
     password = serializers.CharField(
         write_only=True, required=True, validators=[validate_password])
 
+    
     class Meta:
         model = User
         # If added new columns through the User model, add them in the fields
         # list as seen below
         fields = ('username', 'password', 'email',
-                  'first_name', 'last_name', 'is_owner')
+                  'first_name', 'last_name', 'is_owner', 'studio', 'studio_id', 'student', 'student_id'
+                  )
+        depth = 1 
+    studio_id = serializers.IntegerField(write_only=True, required=False)
+    student_id = serializers.IntegerField(write_only=True, required=False)
 
+    
     def create(self, validated_data):
 
         user = User.objects.create(
@@ -42,7 +51,12 @@ class RegistrationSerializer(serializers.ModelSerializer):
             email=validated_data['email'],
             first_name=validated_data['first_name'],
             last_name=validated_data['last_name'],
-            is_owner=validated_data['is_owner']
+            is_owner=validated_data['is_owner'],
+            studio_id=validated_data['studio_id'],
+            student_id = validated_data['student_id'],
+
+            
+
             # If added new columns through the User model, add them in this
             # create method. Example below:
 

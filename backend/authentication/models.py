@@ -1,9 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-
+from studio.models import Studio
+from student.models import Student
 
 class User(AbstractUser):
     is_owner= models.BooleanField('owner status')
+    studio = models.ForeignKey(Studio, on_delete=models.SET_NULL, null=True, blank=True)
+    student = models.ForeignKey(Student, on_delete=models.SET_NULL, null=True, blank=True)
+
     '''
     This is a custom version of the built in User class
     It contains all of the built in fields and functionality of the standard User
