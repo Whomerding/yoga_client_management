@@ -12,11 +12,11 @@ const StudentForm = () => {
         address: "",
         phone_number: "",
         email: user.email,
-        studio_name: "",
+        studio_id: "",
     });
 
     useEffect(()=>{
-        axios.get('http://127.0.0.1:8000/api/studio/', {headers: {Authorization:"Bearer " + token}})
+         axios.get('http://127.0.0.1:8000/api/studio/', {headers: {Authorization:"Bearer " + token}})
         .then(response=> setStudios(response.data))
         .catch(error=> console.error(error));
     },[]);
@@ -30,8 +30,8 @@ const StudentForm = () => {
                 last_name: user.last_name,
                 address: "",
                 phone_number: "",
-                email: user.email, 
-                studio_name: "",
+                email: user.email,
+                studio_id: "",
             });
             console.log ("Studio Added!");
         }   catch (error) {
@@ -41,9 +41,19 @@ const StudentForm = () => {
     const handleInputChange = (event) => {
         setStudentData({ ...studentData, [event.target.name]: event.target.value });
       };
-  
+debugger
     return ( 
         <form onSubmit={handleSubmit}>
+            <div>
+                <label>
+                    Select Your Studio
+                    <select value = {studentData.studio_id} name = "studio_id" onChange={handleInputChange}>
+                        {studios.map(studio => (
+                        <option key={studio.id} type = 'text'  value={studio.id} >{studio.studio_name}</option>
+                        ))}
+                    </select>
+                </label>
+            </div>
             <div>
                 <label>Student Address</label>
                 <input type='text' name='address' value={studentData.address} onChange={handleInputChange}/>
@@ -53,20 +63,10 @@ const StudentForm = () => {
                 <input type='text' name='phone_number' value={studentData.phone_number} onChange={handleInputChange}/>
             </div>
             <div>
-            <label>
-                Select Your Studio
-                <select>
-                    {studios.map(studio => (
-                    <option key={studio.id} value={studio.studio_name} onChange={handleInputChange}>{studio.studio_name}</option>
-                    ))}
-                </select>
-                </label>
-            </div>
-            <div>
                 <button type="submit">Submit</button>
             </div>
         </form>
      );
 };
-debugger
+
 export default StudentForm;
