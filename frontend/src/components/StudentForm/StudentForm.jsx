@@ -16,10 +16,14 @@ const StudentForm = () => {
     });
 
     useEffect(()=>{
-         axios.get('http://127.0.0.1:8000/api/studio/', {headers: {Authorization:"Bearer " + token}})
-        .then(response=> setStudios(response.data))
-        .catch(error=> console.error(error));
+            getAllStudios();
     },[]);
+
+    async function getAllStudios(){
+        const response = await axios.get('http://127.0.0.1:8000/api/studio/', {headers: {Authorization:"Bearer " + token}})
+        setStudios(response.data)
+    }
+
 
     const handleSubmit = async (event) => {
         
@@ -41,7 +45,7 @@ const StudentForm = () => {
     const handleInputChange = (event) => {
         setStudentData({ ...studentData, [event.target.name]: event.target.value });
       };
-debugger
+
     return ( 
         <form onSubmit={handleSubmit}>
             <div>

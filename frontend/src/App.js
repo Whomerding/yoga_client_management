@@ -6,8 +6,9 @@ import "./App.css";
 import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
-import StudioRegisterPage from './pages/StudioRegisterPage/StudioRegisterPage'
-import StudentRegisterPage from './pages/StudentRegisterPage/StudentRegisterPage'
+import StudioRegisterPage from './pages/StudioRegisterPage/StudioRegisterPage';
+import StudentRegisterPage from './pages/StudentRegisterPage/StudentRegisterPage';
+import StudioOwnerPage from './pages/StudioOwnerPage/StudioOwnerPage';
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
@@ -30,6 +31,7 @@ function App() {
         />
         <Route path = "/registerstudio" element={<PrivateRoute><StudioRegisterPage /></PrivateRoute>}/>
         <Route path = "/registerstudent" element={<PrivateRoute><StudentRegisterPage /></PrivateRoute>}/>
+        <Route path = "/owner" element={<PrivateRoute><StudioOwnerPage /></PrivateRoute>}/>
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
       </Routes>

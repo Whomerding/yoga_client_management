@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import useAuth from '../../hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
 
 const StudioOwnerForm = () => {
-    
+    const navigate = useNavigate();
     const [user, token] = useAuth ();
     const [studioData, setStudioData] = useState({
+        id: "",
         studio_name: "",
         first_name: user.first_name,
         last_name: user.last_name,
@@ -13,28 +15,35 @@ const StudioOwnerForm = () => {
         phone_number: "",
         email: user.email,
     });
-  
+    
+
     const handleSubmit = async (event) => {
-        
+        event.preventDefault();
         try {
             let response = await axios.post(`http://127.0.0.1:8000/api/studio/`, studioData, {headers: {Authorization:"Bearer " + token}});
             setStudioData ({
+                id: "",
                 studio_name: "",
                 first_name: user.first_name,
                 last_name: user.last_name,
                 address: "",
                 phone_number: "",
                 email: user.email, 
-            });
+            })
+            const newStudio = response.data;
+            await new Promise((resolve)=>setTimeout(resolve, 0));
+            console.log (newStudio)
+            navigate("/owner", {state: newStudio})
             console.log ("Studio Added!");
         }   catch (error) {
             console.log (error);
         }
     };
+
     const handleInputChange = (event) => {
         setStudioData({ ...studioData, [event.target.name]: event.target.value });
       };
-   
+    
     return ( 
         <form onSubmit={handleSubmit}>
             <div>
