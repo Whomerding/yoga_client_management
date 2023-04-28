@@ -7,10 +7,13 @@ from .models import Studio
 from rest_framework.permissions import IsAuthenticated, AllowAny
 
 @api_view(['GET', 'POST'])
-@permission_classes([IsAuthenticated])
+@permission_classes([AllowAny])
 def create_studio(request):
     if request.method == "GET":
-        studio = Studio.objects.all()
+        studio_email=request.query_params.get('email')
+        studio=Studio.objects.all()
+        if studio_email:
+            studio=studio.filter(email=studio_email)
         serializer = StudioSerializer(studio, many = True)
         return Response(serializer.data)
     elif request.method == 'POST':

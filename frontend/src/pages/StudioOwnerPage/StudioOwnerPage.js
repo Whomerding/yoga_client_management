@@ -2,38 +2,27 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useLocation } from "react-router-dom";
 import useAuth from '../../hooks/useAuth';
+import StudioOwnerForm from '../../components/StudioOwnerForm/StudioOwnerForm';
 
 
 const StudioOwnerPage = () => {
     const [user, token] = useAuth ();
-    const { state } = useLocation();
-    const [students, setStudents] = useState("");
-    const [newStudents, setNewStudents] = useState("");
+    const [studio, setStudio] = useState("");
+
 
     useEffect(()=> {
-        getAllStudents();
-        getNewStudents();
+        getStudio();
+        
       }, []);
-    
-      async function getAllStudents(){
-        const response = await axios.get(`http://127.0.0.1:8000/api/student?studio=${state.id}`, {headers: {Authorization:"Bearer " + token}})
-        setStudents(response.data);
-        console.log (students)
+      async function getStudio(){
+        const response = await axios.get(`http://127.0.0.1:8000/api/studio/${user.studio_id}/`, {headers: {Authorization:"Bearer " + token}})
+        setStudio(response.data);    
     }
     
-    async function getNewStudents(){
-        const response = await axios.get(`http://127.0.0.1:8000/api/student?studio=${state.id}&&new=date_joined`, {headers: {Authorization:"Bearer " + token}})
-        setNewStudents(response.data);
-        console.log (newStudents)
-    }
-
-    console.log("State inside of the Studio Owner Page", state)
-    console.log(students)
-    console.log(newStudents)
 
     return ( 
         <div>
-            <h1>Studio Owner Page</h1>
+            <StudioOwnerForm/>
         </div>
      );
 }

@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import useAuth from '../../hooks/useAuth';
-
+import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 const StudentForm = () => {
     const [studios, setStudios] = useState([]);
+    const navigate = useNavigate();
     const [user, token] = useAuth ();
+    // const {state} = useLocation();
+
     const [studentData, setStudentData] = useState({
         first_name: user.first_name,
         last_name: user.last_name,
@@ -37,7 +41,13 @@ const StudentForm = () => {
                 email: user.email,
                 studio_id: "",
             });
-            console.log ("Studio Added!");
+            if(response.status === 201) {
+                console.log ("Studio Added!");
+                navigate("/login");
+            } else {
+                navigate("/registerstudent");
+                alert('Something went wrong.  Please try registering again');
+            }
         }   catch (error) {
             console.log (error);
         }

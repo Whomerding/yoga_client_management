@@ -10,6 +10,7 @@ import StudioRegisterPage from './pages/StudioRegisterPage/StudioRegisterPage';
 import StudentRegisterPage from './pages/StudentRegisterPage/StudentRegisterPage';
 import StudioOwnerPage from './pages/StudioOwnerPage/StudioOwnerPage';
 import UserOwnerRedirectPage from "./pages/UserOwnerRedirectPage/UserOwnerRedirectPage";
+import StudentPage from "./pages/StudentPage/StudentPage";
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
@@ -31,10 +32,11 @@ function App() {
             </PrivateRoute>
           }
         />
-        <Route path = "/registerstudio" element={<PrivateRoute><StudioRegisterPage /></PrivateRoute>}/>
-        <Route path = "/registerstudent" element={<PrivateRoute><StudentRegisterPage /></PrivateRoute>}/>
+        <Route path = "/registerstudio" element={<StudioRegisterPage />}/>
+        <Route path = "/registerstudent" element={<StudentRegisterPage />}/>
         <Route path = "/owner" element={<PrivateRoute><StudioOwnerPage /></PrivateRoute>}/>
-        <Route path = "/userownerredirectpage" element={<PrivateRoute><UserOwnerRedirectPage /></PrivateRoute>}/>
+        <Route path = "/student" element={<PrivateRoute><StudentPage /></PrivateRoute>}/>
+        <Route path = "/userownerredirect" element={<PrivateRoute><UserOwnerRedirectPage /></PrivateRoute>}/>
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
       </Routes>

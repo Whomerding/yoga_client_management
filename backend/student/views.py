@@ -5,10 +5,10 @@ from rest_framework.response import Response
 from rest_framework import status
 from .serializers import StudentSerializer
 from .models import Student
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 
 @api_view(['GET','POST'])
-@permission_classes([IsAuthenticated])
+@permission_classes([AllowAny])
 def student(request):
     if request.method == "GET":
         startdate=date.today()
