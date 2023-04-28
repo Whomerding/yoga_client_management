@@ -11,14 +11,19 @@ const StudioOwnerPage = () => {
 
 
     useEffect(()=> {
-        getStudio();
-        
+      // setStudioId();
+      getStudio();
       }, []);
+      
+      
       async function getStudio(){
-        const response = await axios.get(`http://127.0.0.1:8000/api/studio/${user.studio_id}/`, {headers: {Authorization:"Bearer " + token}})
+        const response = await axios.get(`http://127.0.0.1:8000/api/studio?email=TEST3@TEST.com`, {headers: {Authorization:"Bearer " + token}})
         setStudio(response.data);    
     }
-    
+    console.log(studio.email)
+      // async function setStudioId(){
+      //   const response = await axios.get(`http://127.0.0.1:8000/api/auth/updatestudio/${user.id}/`, {headers: {Authorization:"Bearer " + token}})
+      // }
 
     return ( 
         <div>

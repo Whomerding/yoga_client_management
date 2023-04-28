@@ -36,7 +36,7 @@ const StudioOwnerForm = () => {
             await new Promise((resolve)=>setTimeout(resolve, 0));
             console.log (newStudio)
             console.log ("Studio Added!");
-            navigate("/owner")
+            navigate("/login")
         }   catch (error) {
             console.log (error.response.data);
         }

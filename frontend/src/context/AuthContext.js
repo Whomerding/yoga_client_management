@@ -64,9 +64,12 @@ export const AuthProvider = ({ children }) => {
         let loggedInUser = jwtDecode(response.data.access);
         setUser(setUserObject(loggedInUser));
         setIsServerError(false);
+        await new Promise((resolve)=>setTimeout(resolve, 0));
         console.log(user)
-        // await new Promise((resolve)=>setTimeout(resolve, 0));
+        const yogi = response.data
+        console.log(yogi)
         navigate("/userownerredirect");
+        console.log (user)
       } else {
         navigate("/register");
       }

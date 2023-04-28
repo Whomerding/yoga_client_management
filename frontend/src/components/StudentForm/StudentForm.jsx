@@ -42,7 +42,7 @@ const StudentForm = () => {
                 studio_id: "",
             });
             if(response.status === 201) {
-                console.log ("Studio Added!");
+                console.log ("Student Added!");
                 navigate("/login");
             } else {
                 navigate("/registerstudent");
