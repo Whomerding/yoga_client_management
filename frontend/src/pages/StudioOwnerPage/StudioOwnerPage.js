@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect} from 'react';
 import axios from 'axios';
 import { useLocation } from "react-router-dom";
 import useAuth from '../../hooks/useAuth';
@@ -25,28 +25,27 @@ const StudioOwnerPage = () => {
     }, []);
     
 
-      async function getStudio(){
-        try {
-          const response = await axios.get(`http://127.0.0.1:8000/api/studio/`)
-          const filteredStudios = response.data.filter(el=>(el.email.toLowerCase()===(user.email.toLowerCase())))
-          const studio = filteredStudios[0]
-          setStudio(studio);          
-        } catch (error) {
-          
-        }
-    }
-
+    async function getStudio(){
+      try {
+        const response = await axios.get(`http://127.0.0.1:8000/api/studio/`)
+        const filteredStudios = response.data.filter(el=>(el.email.toLowerCase()===(user.email.toLowerCase())))
+        const studio = filteredStudios[0]
+        setStudio(studio);          
+      } catch (error) {
+        
+      }
+  }
     async function getAllClassPackages() {
       const response = await axios.get(`http://127.0.0.1:8000/api/classpackage/`, {headers: {Authorization:"Bearer " + token}});
-      const filteredData = response.data.filter((el) => el.studio.id === studio.id);
-      setStudioPackages(filteredData);
-      localStorage.setItem("studioPackages", JSON.stringify(filteredData));
-    }
+      // const filteredData = response.data.filter((el) => el.studio.id === studio.id);
+      setStudioPackages(response.data);
+    // localStorage.setItem("studioPackages", JSON.stringify(filteredData));
+  }
+
+
+    console.log(studio)
+    console.log(studioPackages)
   
-
-    console.log(studio.id)
-    
-
 
 
     return ( 
@@ -63,7 +62,7 @@ const StudioOwnerPage = () => {
             />
           </div>
           <div>
-          <ClassPackageForm studio={studio} getAllClassPackages={getAllClassPackages} />
+            <ClassPackageForm studio={studio} getAllClassPackages={getAllClassPackages} />
           </div>
           <div>
             <ClassPackageTable studio={studio} studioPackages={studioPackages} getAllClassPackages={getAllClassPackages}/>

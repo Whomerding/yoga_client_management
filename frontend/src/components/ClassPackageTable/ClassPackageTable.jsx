@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import useAuth from '../../hooks/useAuth';
 import axios from "axios";
 
-const ClassPackageTable = ({studioPackages}, {getAllClassPackages}) => {
+const ClassPackageTable = ({studioPackages, getAllClassPackages, studio}) => {
 
     const [user, token]= useAuth();
     // const studio_id=studio.id
@@ -24,7 +24,8 @@ const ClassPackageTable = ({studioPackages}, {getAllClassPackages}) => {
         await axios.delete(`http://127.0.0.1:8000/api/classpackage/${id}/`, {headers: {Authorization:"Bearer " + token}}).then(()=> getAllClassPackages())
     }
 
-
+    
+    console.log(`studio.id: ${studio.id}`)   
     return ( 
  
         <table class="table table-dark">
@@ -36,20 +37,20 @@ const ClassPackageTable = ({studioPackages}, {getAllClassPackages}) => {
             </tr>
         </thead>
         <tbody>
-            
         {studioPackages
+        .filter(el => el.studio.id === studio.id)
         .map((el)=>(       
             <tr key={el.id}>
                 <td>{el.package_type}</td>
                 <td>{el.number_of_classes_included_in_package}</td>
                 <td>{el.price}</td>  
                 <td><button onClick= {()=> deleteStudioPackage(el.id)}>Delete</button></td>  
-                {console.log(el)}  
+                {console.log(el.studio.id)}  
             </tr> 
             ))}
         </tbody>
     </table>
      );
     }
- 
+
 export default ClassPackageTable;

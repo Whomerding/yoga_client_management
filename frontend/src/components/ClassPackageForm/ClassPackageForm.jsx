@@ -7,7 +7,7 @@ import { useLocation } from 'react-router-dom';
 const ClassPackageForm = ({studio, getAllClassPackages}) => {
     const [classPackages, setClassPackages]=useState([]);
     const [user, token] = useAuth ();
-    const studio_id= parseInt(studio.id);
+    const studio_id= parseInt(studio);
     const [classData, setClassData] = useState({
         package_type: "",
         number_of_classes_included_in_package: "",
@@ -17,21 +17,21 @@ const ClassPackageForm = ({studio, getAllClassPackages}) => {
     });
     
 
-    console.log (studio_id)
+    console.log (studio)
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            let response = await axios.post(`http://127.0.0.1:8000/api/classpackage/`, classData, {headers: {Authorization:"Bearer " + token}})
-            
-            setClassData ({
-                package_type: "",
-                price: "",
-                number_of_classes_included_in_package: "",
-                stripe_payment_url: "",
-                studio_id: "",
-            })
+            await axios.post(`http://127.0.0.1:8000/api/classpackage/`, classData, {headers: {Authorization:"Bearer " + token}})
+            getAllClassPackages();
+            // setClassData ({
+            //     package_type: "",
+            //     price: "",
+            //     number_of_classes_included_in_package: "",
+            //     stripe_payment_url: "",
+            //     studio_id: "22",
+            // })
             // const newClass = response.data;
-            await new Promise((resolve)=>setTimeout(resolve, 0));
+            // await new Promise((resolve)=>setTimeout(resolve, 0));
             // console.log (newClass)
             console.log ("Class Added!");
         }   catch (error) {
