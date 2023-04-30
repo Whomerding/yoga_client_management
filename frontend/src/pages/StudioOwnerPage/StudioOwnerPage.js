@@ -5,7 +5,7 @@ import useAuth from '../../hooks/useAuth';
 import StudioOwnerForm from '../../components/StudioOwnerForm/StudioOwnerForm';
 import StudentDisplayTable from '../../components/StudentDisplayTable/StudentDisplayTable';
 import SearchStudents from '../../components/SearchStudents/SearchStudents';
-
+import ClassPackageForm from '../../components/ClassPackageForm/ClassPackageForm';
 
 const StudioOwnerPage = () => {
     const [user, token] = useAuth ();
@@ -46,6 +46,9 @@ const StudioOwnerPage = () => {
             <StudentDisplayTable studio={studio} 
             searchTerm={searchTerm} 
             />
+          </div>
+          <div>
+          <ClassPackageForm studio={studio}/>
           </div>
         </div>
 

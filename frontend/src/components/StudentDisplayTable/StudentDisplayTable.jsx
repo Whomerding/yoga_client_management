@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import useAuth from '../../hooks/useAuth';
 import axios from "axios";
 
 const StudentDisplayTable = ({studio}, {searchTerm}) => {
     const [students, setStudents] = useState([]);
+    const [user, token]= useAuth();
     const studio_id=studio.id
-
     useEffect(()=> {
         const storedData = localStorage.getItem("students");
         if (storedData) {
@@ -23,7 +24,7 @@ const StudentDisplayTable = ({studio}, {searchTerm}) => {
     console.log(students)
 
     const deleteStudent = async(id) => {
-        await axios.delete(`http://127.0.0.1:8000/api/student/${id}/`).then(()=> getAllStudents())
+        await axios.delete(`http://127.0.0.1:8000/api/student/${id}/`, {headers: {Authorization:"Bearer " + token}}).then(()=> getAllStudents())
     }
 
 
