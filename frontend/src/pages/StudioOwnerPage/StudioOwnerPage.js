@@ -6,18 +6,24 @@ import StudioOwnerForm from '../../components/StudioOwnerForm/StudioOwnerForm';
 import StudentDisplayTable from '../../components/StudentDisplayTable/StudentDisplayTable';
 import SearchStudents from '../../components/SearchStudents/SearchStudents';
 import ClassPackageForm from '../../components/ClassPackageForm/ClassPackageForm';
-
+import ClassPackageTable from '../../components/ClassPackageTable/ClassPackageTable';
 const StudioOwnerPage = () => {
     const [user, token] = useAuth ();
     const [studio, setStudio] = useState (''); 
     const [searchTerm, setSearchTerm]=useState("");
-   
+    const [studioPackages, setStudioPackages]=useState([]);
 
     useEffect(()=> {
       getStudio();
-   
-      }, []);
-
+      getAllClassPackages();
+      // const storedData = localStorage.getItem("studioPackages");
+      //   if (storedData) {
+      //     setStudioPackages(JSON.parse(storedData));
+      //   } else {
+      //     getAllClassPackages();
+      //   }
+    }, []);
+    
 
       async function getStudio(){
         try {
@@ -30,7 +36,16 @@ const StudioOwnerPage = () => {
         }
     }
 
-    console.log(studio)
+    async function getAllClassPackages() {
+      const response = await axios.get(`http://127.0.0.1:8000/api/classpackage/`, {headers: {Authorization:"Bearer " + token}});
+      const filteredData = response.data.filter((el) => el.studio.id === studio.id);
+      setStudioPackages(filteredData);
+      localStorage.setItem("studioPackages", JSON.stringify(filteredData));
+    }
+  
+
+    console.log(studio.id)
+    
 
 
 
@@ -48,7 +63,10 @@ const StudioOwnerPage = () => {
             />
           </div>
           <div>
-          <ClassPackageForm studio={studio}/>
+          <ClassPackageForm studio={studio} getAllClassPackages={getAllClassPackages} />
+          </div>
+          <div>
+            <ClassPackageTable studio={studio} studioPackages={studioPackages} getAllClassPackages={getAllClassPackages}/>
           </div>
         </div>
 

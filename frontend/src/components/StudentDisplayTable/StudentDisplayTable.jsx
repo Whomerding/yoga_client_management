@@ -21,7 +21,7 @@ const StudentDisplayTable = ({studio}, {searchTerm}) => {
         setStudents(filteredData);
         localStorage.setItem("students", JSON.stringify(filteredData));
       }
-    console.log(students)
+
 
     const deleteStudent = async(id) => {
         await axios.delete(`http://127.0.0.1:8000/api/student/${id}/`, {headers: {Authorization:"Bearer " + token}}).then(()=> getAllStudents())
@@ -53,7 +53,6 @@ const StudentDisplayTable = ({studio}, {searchTerm}) => {
                 <td>{el.address}</td>
                 <td>{el.current_class_package}</td>   
                 <td><button onClick= {()=> deleteStudent(el.id)}>Delete</button></td>  
-                {console.log(el)}  
             </tr> 
             ))}
         </tbody>
