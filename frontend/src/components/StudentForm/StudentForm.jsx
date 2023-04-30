@@ -24,7 +24,7 @@ const StudentForm = () => {
     },[]);
 
     async function getAllStudios(){
-        const response = await axios.get('http://127.0.0.1:8000/api/studio/', {headers: {Authorization:"Bearer " + token}})
+        const response = await axios.get(`http://127.0.0.1:8000/api/studio/`, {headers: {Authorization:"Bearer " + token}})
         setStudios(response.data)
     }
 

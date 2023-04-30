@@ -23,6 +23,7 @@ const StudioOwnerForm = () => {
         event.preventDefault();
         try {
             let response = await axios.post(`http://127.0.0.1:8000/api/studio/`, studioData, {headers: {Authorization:"Bearer " + token}})
+            
             setStudioData ({
                 id: "",
                 studio_name: "",

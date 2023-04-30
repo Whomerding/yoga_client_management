@@ -4,8 +4,7 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth import get_user_model
 from .models import User
-from .models import Student
-from .models import Studio
+
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
@@ -20,8 +19,6 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         token["last_name"] = user.last_name
         token["is_owner"] = user.is_owner
         token["email"]=user.email
-        token["student_id"]=user.student_id
-        token["studio_id"]=user.studio_id
     
         return token
 
@@ -38,11 +35,10 @@ class RegistrationSerializer(serializers.ModelSerializer):
         # If added new columns through the User model, add them in the fields
         # list as seen below
         fields = ('username', 'password', 'email',
-                  'first_name', 'last_name', 'is_owner', 'studio', 'studio_id', 'student', 'student_id'
+                  'first_name', 'last_name', 'is_owner'
                   )
-        depth = 1 
-    studio_id = serializers.IntegerField(write_only=True, required=False, allow_null=True)
-    student_id = serializers.IntegerField(write_only=True, required=False, allow_null=True)
+     
+
     
         
     def create(self, validated_data):
@@ -53,8 +49,6 @@ class RegistrationSerializer(serializers.ModelSerializer):
             first_name=validated_data['first_name'],
             last_name=validated_data['last_name'],
             is_owner=validated_data['is_owner'],
-            studio_id=validated_data.get('studio_id'),
-            student_id = validated_data.get('student_id'),
 
             
 
@@ -68,22 +62,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
         return user
 
 
-class UserSerializer(serializers.ModelSerializer):
-    studio=serializers.IntegerField()
 
-    class Meta:
-        model = User
-        fields= ('id', 'username', 'email', 'first_name', 'last_name', 'is_owner','studio', 'studio_id','student', 'student_id')
-        read_only_fields=('id', 'username')
-        depth = 1 
-    studio_id = serializers.IntegerField(write_only=True, required=False, allow_null=True)
-    student_id = serializers.IntegerField(write_only=True, required=False, allow_null=True)
-
-    def update_studio(self, instance, validated_data):
-        print("UPDATE METHOD TRIGGERED: serializers.py (authentication) Line 80")
-        instance.studio_id=validated_data.get('studio_id')
-        instance.save()
-        return instance
 
     # def update_student(self, instance, validated_data):
     #     instance.student_id=validated_data.get('studio_id', instance.studio_id)

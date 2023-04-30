@@ -1,27 +1,63 @@
-const StudentDisplayTable = (props) => {
-    const { state } = useLocation();
-    const [students, setStudents] = useState("");
-    const [newStudents, setNewStudents] = useState("");
+import React, { useState, useEffect } from 'react';
+import axios from "axios";
+
+const StudentDisplayTable = ({studio}, {searchTerm}) => {
+    const [students, setStudents] = useState([]);
+    const studio_id=studio.id
 
     useEffect(()=> {
-        getAllStudents();
-        }, []);
+        const storedData = localStorage.getItem("students");
+        if (storedData) {
+          setStudents(JSON.parse(storedData));
+        } else {
+          getAllStudents();
+        }
+      }, []);
     
-        async function getAllStudents(){
-        const response = await axios.get(`http://127.0.0.1:8000/api/student?studio=${state.id}`)
-        setStudents(response.data);
-        console.log (students)
-    }
-    
-
-    console.log("State inside of the Studio Owner Page", state)
+    async function getAllStudents() {
+        const response = await axios.get(`http://127.0.0.1:8000/api/student/`);
+        const filteredData = response.data.filter((el) => el.studio.id === studio_id);
+        setStudents(filteredData);
+        localStorage.setItem("students", JSON.stringify(filteredData));
+      }
     console.log(students)
-    console.log(newStudents)
-    
-    
-    return ( 
 
+    const deleteStudent = async(id) => {
+        await axios.delete(`http://127.0.0.1:8000/api/student/${id}/`).then(()=> getAllStudents())
+    }
+
+
+    return ( 
+ 
+        <table class="table table-dark">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Phone Number</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Package Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+        {students
+        .map((el)=>(       
+            <tr key={el.id}>
+                <td>{el.first_name}</td>
+                <td>{el.last_name}</td>
+                <td>{el.phone_number}</td>
+                <td>{el.email}</td>
+                <td>{el.address}</td>
+                <td>{el.current_class_package}</td>   
+                <td><button onClick= {()=> deleteStudent(el.id)}>Delete</button></td>  
+                {console.log(el)}  
+            </tr> 
+            ))}
+        </tbody>
+    </table>
      );
-}
+    }
  
 export default StudentDisplayTable;
