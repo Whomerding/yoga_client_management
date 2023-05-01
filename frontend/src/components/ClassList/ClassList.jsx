@@ -4,10 +4,10 @@ import React from 'react';
 
 const ClassList = ({student, studioPackages}) => {
 
-    return ( 
+    return student && studioPackages && ( 
         <div>
             <div>
-                {studioPackages.filter(el=>el.studio.id === student.studio.id).map((el)=> (<ClassInfoCard singlePackage={el}/>))}
+                {studioPackages.filter(el=>el.studio?.id === student.studio?.id).map((el)=> (<ClassInfoCard singlePackage={el}/>))}
             </div>
         </div>
      );

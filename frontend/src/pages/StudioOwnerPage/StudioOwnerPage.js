@@ -8,6 +8,7 @@ import SearchStudents from '../../components/SearchStudents/SearchStudents';
 import ClassPackageForm from '../../components/ClassPackageForm/ClassPackageForm';
 import ClassPackageTable from '../../components/ClassPackageTable/ClassPackageTable';
 import StudioInfoDisplay from '../../components/StudioInfoDisplay/StudioInfoDisplay';
+import InactiveStudentDisplay from '../../components/InactiveStudentDisplay/InactiveStudentDisplay';
 
 const StudioOwnerPage = () => {
     const [user, token] = useAuth ();
@@ -61,6 +62,9 @@ const StudioOwnerPage = () => {
           </div>
           <div>
             <ClassPackageTable studio={studio} studioPackages={studioPackages} getAllClassPackages={getAllClassPackages}/>
+          </div>
+          <div>
+            <InactiveStudentDisplay studio={studio} />
           </div>
         </div>
 

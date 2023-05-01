@@ -16,7 +16,6 @@ const StudentPage = () => {
       getStudents();
     }, []);
     
-
     async function getAllClassPackages() {
       const response = await axios.get(`http://127.0.0.1:8000/api/classpackage/`, {headers: {Authorization:"Bearer " + token}});
       setStudioPackages(response.data);
@@ -38,7 +37,7 @@ const StudentPage = () => {
     console.log(studioPackages)
 
 
-    return ( 
+    return student && ( 
         <div>
             <div>
                 <CheckInButton student={student}/>

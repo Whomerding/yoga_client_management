@@ -45,7 +45,7 @@ const StudentDisplayTable = ({studio, searchTerm}) => {
                 <td>{el.phone_number}</td>
                 <td>{el.email}</td>
                 <td>{el.address}</td>
-                <td>{el.current_class_package}</td>   
+                <td>{el.current_class_package}</td>
                 <td><button onClick= {()=> deleteStudent(el.id)}>Delete</button></td>  
             </tr> 
             ))}
