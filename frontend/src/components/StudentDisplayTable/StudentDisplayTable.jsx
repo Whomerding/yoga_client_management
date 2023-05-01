@@ -2,24 +2,18 @@ import React, { useState, useEffect } from 'react';
 import useAuth from '../../hooks/useAuth';
 import axios from "axios";
 
-const StudentDisplayTable = ({studio}, {searchTerm}) => {
+const StudentDisplayTable = ({studio, searchTerm}) => {
     const [students, setStudents] = useState([]);
     const [user, token]= useAuth();
     const studio_id=studio.id
+    
     useEffect(()=> {
-        const storedData = localStorage.getItem("students");
-        if (storedData) {
-          setStudents(JSON.parse(storedData));
-        } else {
-          getAllStudents();
-        }
+          getAllStudents();  
       }, []);
     
     async function getAllStudents() {
         const response = await axios.get(`http://127.0.0.1:8000/api/student/`);
-        const filteredData = response.data.filter((el) => el.studio.id === studio_id);
-        setStudents(filteredData);
-        localStorage.setItem("students", JSON.stringify(filteredData));
+        setStudents(response.data);
       }
 
 
@@ -43,7 +37,7 @@ const StudentDisplayTable = ({studio}, {searchTerm}) => {
         </thead>
         <tbody>
             
-        {students
+        {students.filter((el) => el.studio.id === studio_id) 
         .map((el)=>(       
             <tr key={el.id}>
                 <td>{el.first_name}</td>

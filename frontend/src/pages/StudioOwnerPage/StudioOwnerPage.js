@@ -7,6 +7,8 @@ import StudentDisplayTable from '../../components/StudentDisplayTable/StudentDis
 import SearchStudents from '../../components/SearchStudents/SearchStudents';
 import ClassPackageForm from '../../components/ClassPackageForm/ClassPackageForm';
 import ClassPackageTable from '../../components/ClassPackageTable/ClassPackageTable';
+import StudioInfoDisplay from '../../components/StudioInfoDisplay/StudioInfoDisplay';
+
 const StudioOwnerPage = () => {
     const [user, token] = useAuth ();
     const [studio, setStudio] = useState (''); 
@@ -42,8 +44,9 @@ const StudioOwnerPage = () => {
 
     return ( 
         <div>
+
           <div>
-            <StudioOwnerForm/>
+            {studio.id ? (<StudioInfoDisplay studio={studio}/>): (<StudioOwnerForm/>)}
           </div>
           <div>
             {/* <SearchStudents setSearchTerm={setSearchTerm} searchTerm={searchTerm}/> */}
