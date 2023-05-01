@@ -16,12 +16,6 @@ const StudioOwnerPage = () => {
     useEffect(()=> {
       getStudio();
       getAllClassPackages();
-      // const storedData = localStorage.getItem("studioPackages");
-      //   if (storedData) {
-      //     setStudioPackages(JSON.parse(storedData));
-      //   } else {
-      //     getAllClassPackages();
-      //   }
     }, []);
     
 
@@ -37,9 +31,7 @@ const StudioOwnerPage = () => {
   }
     async function getAllClassPackages() {
       const response = await axios.get(`http://127.0.0.1:8000/api/classpackage/`, {headers: {Authorization:"Bearer " + token}});
-      // const filteredData = response.data.filter((el) => el.studio.id === studio.id);
       setStudioPackages(response.data);
-    // localStorage.setItem("studioPackages", JSON.stringify(filteredData));
   }
 
 

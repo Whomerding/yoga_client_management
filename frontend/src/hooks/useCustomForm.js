@@ -9,7 +9,7 @@ const useCustomForm = (initialValues = {}, onSubmit) => {
     }catch(er){
 
     }
-    if (e.target.name === "isOwner") {
+    if (e.target.name === "is_owner") {
       setFormValues({...formData, [e.target.name]: e.target.checked });
     } else {
       setFormValues({ ...formData, [e.target.name]: e.target.value });
@@ -18,6 +18,7 @@ const useCustomForm = (initialValues = {}, onSubmit) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
     onSubmit(formData);
   };
 

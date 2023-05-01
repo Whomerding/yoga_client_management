@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+
 
 const StudentForm = () => {
     const [studios, setStudios] = useState([]);
     const navigate = useNavigate();
     const [user, token] = useAuth ();
-    // const {state} = useLocation();
+
 
     const [studentData, setStudentData] = useState({
         first_name: user.first_name,
@@ -41,15 +41,12 @@ const StudentForm = () => {
                 email: user.email,
                 studio_id: "",
             });
-            if(response.status === 201) {
-                console.log ("Student Added!");
-                navigate("/login");
-            } else {
-                navigate("/registerstudent");
-                alert('Something went wrong.  Please try registering again');
-            }
+            const newStudent = response.data;
+            await new Promise((resolve)=>setTimeout(resolve, 0));
+            console.log (newStudent)
+            console.log ("Student Added!");
         }   catch (error) {
-            console.log (error);
+            console.log (error.response.data);
         }
     };
     const handleInputChange = (event) => {

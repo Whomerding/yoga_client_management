@@ -1,19 +1,21 @@
 import useAuth from "../../hooks/useAuth";
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
 function UserOwnerRedirectPage() {
     const [user, token] = useAuth ();
     const navigate = useNavigate();
+
     
     useEffect(()=> {
+
         Redirect()
       }, []);
     
-    
-    function Redirect() {
-    
-        {user.is_owner===true? navigate("/owner"): navigate("/student")}; 
+
+    function Redirect() { 
+  
+        {user.is_owner===true? navigate("/owner"): navigate("/student")};      
     }
     return ( 
         <div>
