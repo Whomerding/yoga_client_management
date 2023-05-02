@@ -13,16 +13,17 @@ const StudentDisplayTable = ({studio}) => {
     
     useEffect(()=> {
         getInactiveStudents();  
-    }, []);
+    }, [studio]);
     
     async function getInactiveStudents() {
-        const response = await axios.get('http://127.0.0.1:8000/api/classestaken/', {headers: {Authorization:"Bearer " + token}} );
-        const filteredResponse = response.data.filter((el)=>Date.parse(el.classes_taken) >= Date.parse(thirtyDaysAgo))
+        const response = await axios.get('http://127.0.0.1:8000/api/student/' );
+        const filteredResponse = response.data.filter((el)=>Date.parse(el.last_class_taken) <= Date.parse(thirtyDaysAgo))
         setInactiveStudents(filteredResponse);
     }
         
 console.log (thirtyDaysAgo)
 console.log (inactiveStudents)
+
     return ( 
  
         <table class="table table-dark">
@@ -38,15 +39,15 @@ console.log (inactiveStudents)
         </thead>
         <tbody>
             
-        {inactiveStudents.filter((el) => el.student.studio === studio_id)
+        {inactiveStudents.filter((el) => el.studio.id === studio_id) 
         .map((el)=>(       
             <tr key={el.id}>
-                <td>{el.student.first_name}</td>
-                <td>{el.student.last_name}</td>
-                <td>{el.student.phone_number}</td>
-                <td>{el.student.email}</td>
-                <td>{el.student.address}</td>
-                <td>{el.student.current_class_package}</td>
+                <td>{el.first_name}</td>
+                <td>{el.last_name}</td>
+                <td>{el.phone_number}</td>
+                <td>{el.email}</td>
+                <td>{el.address}</td>
+                <td>{el.current_class_package}</td>
             </tr> 
             ))}
         </tbody>

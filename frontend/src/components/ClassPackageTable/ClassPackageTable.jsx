@@ -33,6 +33,7 @@ const ClassPackageTable = ({studioPackages, getAllClassPackages, studio}) => {
             <tr>
                 <th>Package Type</th>
                 <th>Number of Classes Included</th>
+                <th>stripe url</th>
                 <th>Price</th>
             </tr>
         </thead>
@@ -43,6 +44,7 @@ const ClassPackageTable = ({studioPackages, getAllClassPackages, studio}) => {
             <tr key={el.id}>
                 <td>{el.package_type}</td>
                 <td>{el.number_of_classes_included_in_package}</td>
+                <td>{el.stripe_payment_url}</td>
                 <td>{el.price}</td>  
                 <td><button onClick= {()=> deleteStudioPackage(el.id)}>Delete</button></td>  
                 {console.log(el.studio.id)}  

@@ -54,6 +54,10 @@ const ClassPackageForm = ({studio, getAllClassPackages}) => {
                 <input type='text' name='number_of_classes_included_in_package' value={classData.number_of_classes_included_in_package} onChange={handleInputChange}/>
             </div>
             <div>
+                <label>Stripe Payment URL</label>
+                <input type='url' name='stripe_payment_url' value={classData.stripe_payment_url} onChange={handleInputChange}/>
+            </div>
+            <div>
                 <label>Price</label>
                 <input type='text' name='price' value={classData.price} onChange={handleInputChange}/>
             </div>

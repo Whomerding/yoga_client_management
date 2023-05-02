@@ -37,17 +37,17 @@ const StudentPage = () => {
     console.log(studioPackages)
 
 
-    return student && ( 
+    return ( 
         <div>
+            <div>
+                {student.id ? (<StudentInfoDisplay student={student}/>): (<StudentForm/>)}
+            </div>
             <div>
                 <CheckInButton student={student}/>
             </div>
             <div>
                 <ClassList student={student} studioPackages={studioPackages}/>
             </div>
-          <div>
-            {student.id ? (<StudentInfoDisplay student={student}/>): (<StudentForm/>)}
-          </div>
         </div>
 
      );

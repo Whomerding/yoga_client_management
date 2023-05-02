@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from 'react';
 import axios from 'axios';
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import useAuth from '../../hooks/useAuth';
 import StudioOwnerForm from '../../components/StudioOwnerForm/StudioOwnerForm';
 import StudentDisplayTable from '../../components/StudentDisplayTable/StudentDisplayTable';
@@ -15,7 +15,7 @@ const StudioOwnerPage = () => {
     const [studio, setStudio] = useState (''); 
     const [searchTerm, setSearchTerm]=useState("");
     const [studioPackages, setStudioPackages]=useState([]);
-
+    // const navigate = useNavigate(); 
     useEffect(()=> {
       getStudio();
       getAllClassPackages();
@@ -45,7 +45,6 @@ const StudioOwnerPage = () => {
 
     return ( 
         <div>
-
           <div>
             {studio.id ? (<StudioInfoDisplay studio={studio}/>): (<StudioOwnerForm/>)}
           </div>
@@ -53,17 +52,20 @@ const StudioOwnerPage = () => {
             {/* <SearchStudents setSearchTerm={setSearchTerm} searchTerm={searchTerm}/> */}
           </div>
           <div>
+            <h2>Students</h2>
             <StudentDisplayTable studio={studio} 
             searchTerm={searchTerm} 
             />
           </div>
           <div>
+            <h2>Current Class Packages</h2>
             <ClassPackageForm studio={studio} getAllClassPackages={getAllClassPackages} />
           </div>
           <div>
             <ClassPackageTable studio={studio} studioPackages={studioPackages} getAllClassPackages={getAllClassPackages}/>
           </div>
           <div>
+          <h2>Inactive Students</h2>
             <InactiveStudentDisplay studio={studio} />
           </div>
         </div>

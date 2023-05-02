@@ -33,6 +33,7 @@ const StudentDisplayTable = ({studio, searchTerm}) => {
                 <th>Email</th>
                 <th>Address</th>
                 <th>Package Type</th>
+                <th>Payment Last Initiated</th>
             </tr>
         </thead>
         <tbody>
@@ -46,6 +47,7 @@ const StudentDisplayTable = ({studio, searchTerm}) => {
                 <td>{el.email}</td>
                 <td>{el.address}</td>
                 <td>{el.current_class_package}</td>
+                <td>{el.last_payment}</td>
                 <td><button onClick= {()=> deleteStudent(el.id)}>Delete</button></td>  
             </tr> 
             ))}

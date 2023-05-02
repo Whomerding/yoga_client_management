@@ -4,7 +4,7 @@ from .models import Student
 class StudentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Student
-        fields = ['id','first_name', 'last_name', 'date_joined', 'address', 'phone_number', 'email','classes_remaining', 'last_class_taken', 'studio', 'studio_id', 'current_class_package','current_class_package_id']
+        fields = ['id','first_name', 'last_name', 'date_joined', 'last_payment', 'address', 'phone_number', 'email','classes_remaining', 'last_class_taken', 'studio', 'studio_id', 'current_class_package','current_class_package_id']
         depth = 1 
     studio_id = serializers.IntegerField(write_only=True)
     current_class_package_id = serializers.IntegerField(write_only=True, required=False)

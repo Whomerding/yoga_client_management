@@ -11,6 +11,7 @@ class Student(models.Model):
     address = models.CharField (max_length=500)
     phone_number = models.BigIntegerField()
     email = models.EmailField(max_length=255)
+    last_payment = models.DateField(null=True, blank=True)
     current_class_package=models.ForeignKey(Classes, on_delete=models.CASCADE, null=True, blank=True)
     classes_remaining = models.IntegerField(null=True, blank=True)
     last_class_taken=models.DateField(null=True, blank=True)
