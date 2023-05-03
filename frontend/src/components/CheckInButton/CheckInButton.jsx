@@ -8,10 +8,14 @@ const CheckInButton = ({student}) => {
     const [user, token]= useAuth();
     const [checkInData, setCheckInData]= useState();
     var today = format(new Date(), 'yyyy-MM-dd');
-    const [lastClassTaken, setLastClassTaken] = useState({
-        last_class_taken: today
-    });
-    console.log (today)
+    const [lastClassTaken, setLastClassTaken] = useState();
+
+    useEffect(()=>{
+        setLastClassTaken({
+        last_class_taken: today,
+        classes_remaining: student.classes_remaining -1   
+    })},[student])
+    
     useEffect(()=>{
         setCheckInData({student_id: student?.id})
     },[student])
@@ -21,6 +25,7 @@ const CheckInButton = ({student}) => {
     const handleClick = async (event)=> {
         event.preventDefault();
        logItAll()
+       console.log(lastClassTaken)
     }
     
     const logClass = async () => {

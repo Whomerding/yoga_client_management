@@ -7,24 +7,29 @@ const ClassInfoCard = ({singlePackage, student}) => {
     const [user, token]=useAuth()
     var today = format(new Date(), 'yyyy-MM-dd');
     const student_id=student?.id
-    
-    const [lastPayment, setLastPayment]=useState({
-        last_payment: today
-    })
+    const [studentUpdate, setStudentUpdate]=useState()
 
-    // useEffect(()=>{
-    //     setLastPayment({last_payment:today})
-    // },[student, singlePackage])
+    useEffect(()=>{setStudentUpdate({
+        last_payment: today,
+        current_class_package_id: singlePackage.id,
+        classes_remaining: student.classes_remaining + singlePackage.number_of_classes_included_in_package
+    })},[])
 
-    const handleClick = async (event)=> {
+    const handleClick = async (event)=> {   
+        event.preventDefault()
+        console.log(studentUpdate)
+        console.log (typeof student.classes_remaining, student.classes_remaining)
+        console.log (typeof singlePackage.number_of_classes_included_in_package, singlePackage.number_of_classes_included_in_package)
         try {
-            await axios.patch(`http://127.0.0.1:8000/api/student/update/${student_id}/`, lastPayment, {headers: {Authorization:"Bearer " + token}});
-            console.log("Payment Initiated with onClick Event!")
+            await axios.patch(`http://127.0.0.1:8000/api/student/update/${student_id}/`, studentUpdate, {headers: {Authorization:"Bearer " + token}});
+            console.log("student info updated")
         } catch (error) {
             console.log(error)
         } 
     }
-    console.log (student.last_payment)
+
+
+   
     return ( 
         <div>
             <a href = {singlePackage.stripe_payment_url} target="_blank" rel="noopener noreferrer" onClick={handleClick}>
@@ -36,3 +41,4 @@ const ClassInfoCard = ({singlePackage, student}) => {
 }
  
 export default ClassInfoCard;
+

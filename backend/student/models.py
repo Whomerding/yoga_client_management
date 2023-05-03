@@ -13,6 +13,7 @@ class Student(models.Model):
     email = models.EmailField(max_length=255)
     last_payment = models.DateField(null=True, blank=True)
     current_class_package=models.ForeignKey(Classes, on_delete=models.CASCADE, null=True, blank=True)
-    classes_remaining = models.IntegerField(null=True, blank=True)
+    classes_remaining = models.IntegerField(null=True, blank=True, default=0)
     last_class_taken=models.DateField(null=True, blank=True)
+    payment_last_resolved=models.DateField(default=date.today)
     studio = models.ForeignKey(Studio, on_delete=models.CASCADE)

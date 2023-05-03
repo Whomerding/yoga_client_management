@@ -6,16 +6,15 @@ import { useNavigate } from 'react-router-dom';
 
 const StudentForm = () => {
     const [studios, setStudios] = useState([]);
-    const navigate = useNavigate();
     const [user, token] = useAuth ();
-
+    const navigate=useNavigate();
 
     const [studentData, setStudentData] = useState({
-        first_name: user.first_name,
-        last_name: user.last_name,
+        first_name: "",
+        last_name: "",
         address: "",
         phone_number: "",
-        email: user.email,
+        email: "",
         studio_id: "",
     });
 
@@ -24,27 +23,28 @@ const StudentForm = () => {
     },[]);
 
     async function getAllStudios(){
-        const response = await axios.get(`http://127.0.0.1:8000/api/studio/`, {headers: {Authorization:"Bearer " + token}})
+        const response = await axios.get(`http://127.0.0.1:8000/api/studio/`)
         setStudios(response.data)
     }
 
 
     const handleSubmit = async (event) => {
-        
+        event.preventDefault();
         try {
-            let response = await axios.post(`http://127.0.0.1:8000/api/student/`, studentData, {headers: {Authorization:"Bearer " + token}});
+            let response = await axios.post(`http://127.0.0.1:8000/api/student/`, studentData);
             setStudentData ({
-                first_name: user.first_name,
-                last_name: user.last_name,
+                first_name: "",
+                last_name: "",
                 address: "",
                 phone_number: "",
-                email: user.email,
+                email: "",
                 studio_id: "",
             });
             const newStudent = response.data;
             await new Promise((resolve)=>setTimeout(resolve, 0));
             console.log (newStudent)
             console.log ("Student Added!");
+            navigate("/login")
         }   catch (error) {
             console.log (error.response.data);
         }
@@ -66,11 +66,21 @@ const StudentForm = () => {
                 </label>
             </div>
             <div>
-                <label>Student Address</label>
+                <label>First Name</label>
+                <input type='text' name='first_name' value={studentData.first_name} onChange={handleInputChange}/>
+            </div>            <div>
+                <label>Last Name</label>
+                <input type='text' name='last_name' value={studentData.last_name} onChange={handleInputChange}/>
+            </div>            <div>
+                <label>Email</label>
+                <input type='text' name='email' value={studentData.email} onChange={handleInputChange}/>
+            </div>
+            <div>
+                <label>Address</label>
                 <input type='text' name='address' value={studentData.address} onChange={handleInputChange}/>
             </div>
             <div>
-                <label>Student Phone Number</label>
+                <label>Phone Number</label>
                 <input type='text' name='phone_number' value={studentData.phone_number} onChange={handleInputChange}/>
             </div>
             <div>

@@ -30,6 +30,7 @@ export const AuthProvider = ({ children }) => {
   const [isServerError, setIsServerError] = useState(false);
   const navigate = useNavigate();
 
+
   const registerUser = async (registerData) => {
     try {
       let finalData = {
@@ -41,10 +42,15 @@ export const AuthProvider = ({ children }) => {
         is_owner: registerData.is_owner,
       };
       let response = await axios.post(`${BASE_URL}/register/`, finalData);
+      await new Promise((resolve)=>setTimeout(resolve, 0));
+  
+     
+  
       if (response.status === 201) {
         console.log("Successful registration! Log in to access token");
         setIsServerError(false);
-        navigate("/login");
+
+        {registerData.is_owner ? navigate("/registerstudio"): navigate('/registerstudent');}
       } else {
         navigate("/register");
       }

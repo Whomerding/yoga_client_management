@@ -4,34 +4,34 @@ import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 
-const StudioOwnerForm = () => {
+const StudioOwnerForm = ({userData}) => {
     const navigate = useNavigate();
-    const [user, token] = useAuth ();
-    const {state}= useLocation ();
+
+  
     const [studioData, setStudioData] = useState({
         id: "",
         studio_name: "",
-        first_name: user.first_name,
-        last_name: user.last_name,
+        first_name: "",
+        last_name: "",
         address: "",
         phone_number: "",
-        email: user.email,
+        email: "",
     });
     
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            let response = await axios.post(`http://127.0.0.1:8000/api/studio/`, studioData, {headers: {Authorization:"Bearer " + token}})
+            let response = await axios.post(`http://127.0.0.1:8000/api/studio/`, studioData)
             
             setStudioData ({
                 id: "",
                 studio_name: "",
-                first_name: user.first_name,
-                last_name: user.last_name,
+                first_name: "",
+                last_name: "",
                 address: "",
                 phone_number: "",
-                email: user.email, 
+                email: "", 
             })
             const newStudio = response.data;
             await new Promise((resolve)=>setTimeout(resolve, 0));
@@ -52,6 +52,18 @@ const StudioOwnerForm = () => {
             <div>
                 <label>Studio Name</label>
                 <input type='text' name='studio_name' value={studioData.studio_name} onChange={handleInputChange}/>
+            </div>
+            <div>
+                <label>Owner's First Name</label>
+                <input type='text' name='first_name' value={studioData.first_name} onChange={handleInputChange}/>
+            </div>
+            <div>
+                <label>Owner's Last Name</label>
+                <input type='text' name='last_name' value={studioData.last_name} onChange={handleInputChange}/>
+            </div>
+            <div>
+                <label>Owner's Email Address</label>
+                <input type='text' name='email' value={studioData.email} onChange={handleInputChange}/>
             </div>
             <div>
                 <label>Studio Address</label>
