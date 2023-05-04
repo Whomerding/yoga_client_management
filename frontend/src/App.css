@@ -19,18 +19,19 @@ p {
 
 button {
   background-color: transparent;
-  border: 2px solid steelblue;
-  color: steelblue;
+  border: 2px solid whitesmoke;
+  color: whitesmoke;
   font-size: 1rem;
   font-family: inherit;
   max-width: 100px;
   padding: 0.5rem 0.5rem;
+  border-radius: .5rem;
 }
 
 button:hover {
   cursor: pointer;
   color: white;
-  background-color: steelblue;
+  background-color: whitesmoke;
 }
 
 .container {
@@ -55,4 +56,34 @@ button:hover {
   margin: 5px;
   padding: 3px 7px;
   font-size: 17px;
+}
+
+.package-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 93%;
+  margin: auto;
+}
+
+.individual-class-card {
+  background-color: #FFFFFF;
+  opacity: 77%;
+  border-radius: .5REM;
+  padding: 2%;
+  text-align: center;
+  color: black;
+}
+
+.student-info-display {
+  color: #707070;
+  background-color: #FFFFFF;
+  margin: 2REM;
+  border-radius: .5REM;
+  padding: 2rem;
+  opacity: 77%;
+}
+h2.student-info-display {
+  font-family: cursive;
+  font-size: x-large;
 }

@@ -18,10 +18,15 @@ import Footer from "./components/Footer/Footer";
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
 
+// Images
+import image from "./Images/lotusflower_jay_castor_on_unsplash.jpg"
+
 function App() {
   
   return (
-    <div>
+    <div style={{backgroundImage: `url(${image})`,  backgroundSize: "cover",
+      height: "10",
+      width: "100%"}}>
       <Navbar />
       <Routes>
         <Route
@@ -40,7 +45,6 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
       </Routes>
-      <Footer />
     </div>
   );
 }

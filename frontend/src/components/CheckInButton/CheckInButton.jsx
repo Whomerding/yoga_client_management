@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import useAuth from "../../hooks/useAuth";
 import { format } from 'date-fns';
 
-const CheckInButton = ({student}) => {
+const CheckInButton = ({student, getStudents}) => {
     const [user, token]= useAuth();
     const [checkInData, setCheckInData]= useState();
     var today = format(new Date(), 'yyyy-MM-dd');
@@ -41,6 +41,7 @@ const CheckInButton = ({student}) => {
         try {
             await axios.patch(`http://127.0.0.1:8000/api/student/update/${student.id}/`, lastClassTaken, {headers: {Authorization:"Bearer " + token}});
             console.log("Last Class Taken logged!")
+            getStudents()
         } catch (error) {
             console.log(error)
         } 
@@ -49,6 +50,7 @@ const CheckInButton = ({student}) => {
     const logItAll = ()=> {
         logClass();
         logLastClassTaken();
+ 
     }
 
     return student && ( 

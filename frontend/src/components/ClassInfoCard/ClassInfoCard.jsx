@@ -3,7 +3,7 @@ import { format } from 'date-fns'
 import axios from 'axios';
 import useAuth from '../../hooks/useAuth';
 
-const ClassInfoCard = ({singlePackage, student}) => {
+const ClassInfoCard = ({singlePackage, student, getStudents}) => {
     const [user, token]=useAuth()
     var today = format(new Date(), 'yyyy-MM-dd');
     const student_id=student?.id
@@ -13,25 +13,27 @@ const ClassInfoCard = ({singlePackage, student}) => {
         last_payment: today,
         current_class_package_id: singlePackage.id,
         classes_remaining: student.classes_remaining + singlePackage.number_of_classes_included_in_package
-    })},[])
-
+    })},[student])
+    
     const handleClick = async (event)=> {   
-        event.preventDefault()
+        // event.preventDefault()
         console.log(studentUpdate)
-        console.log (typeof student.classes_remaining, student.classes_remaining)
+        console.log ("classes remaining: "+ student.classes_remaining)
         console.log (typeof singlePackage.number_of_classes_included_in_package, singlePackage.number_of_classes_included_in_package)
         try {
-            await axios.patch(`http://127.0.0.1:8000/api/student/update/${student_id}/`, studentUpdate, {headers: {Authorization:"Bearer " + token}});
+            let result = await axios.patch(`http://127.0.0.1:8000/api/student/update/${student_id}/`, studentUpdate, {headers: {Authorization:"Bearer " + token}});
+        
+            getStudents()
             console.log("student info updated")
         } catch (error) {
             console.log(error)
         } 
     }
-
+    
 
    
     return ( 
-        <div>
+        <div key= {singlePackage.id} className="individual-class-card">
             <a href = {singlePackage.stripe_payment_url} target="_blank" rel="noopener noreferrer" onClick={handleClick}>
                 <p>{singlePackage.package_type}</p>
                 <p>{singlePackage.price}</p>
@@ -41,4 +43,3 @@ const ClassInfoCard = ({singlePackage, student}) => {
 }
  
 export default ClassInfoCard;
-

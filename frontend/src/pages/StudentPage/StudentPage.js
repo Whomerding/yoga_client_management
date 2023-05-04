@@ -125,13 +125,13 @@ const StudentPage = () => {
     return student && ( 
         <div>
             <div>
-              <StudentInfoDisplay student={student}/>
+                <StudentInfoDisplay student={student}/>
             </div> 
             <div> 
-              <CheckInButton student={student}/>
+              <CheckInButton student={student}  getStudents={getStudents} />
             </div>
             <div>
-              <ClassList student={student} studioPackages={studioPackages}/>
+              <ClassList student={student}  studioPackages={studioPackages} getStudents={getStudents} />
             </div> 
 
         </div>

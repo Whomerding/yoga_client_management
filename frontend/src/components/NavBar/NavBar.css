@@ -7,13 +7,15 @@ ul {
 li {
   font-size: 1.25rem;
 }
-
+span {
+  color: #F8F8FA;
+}
 .navBar {
-  background: steelblue;
+  background: #DFE5DA;
   box-shadow: 4px 2px 5px gray;
-  color: white;
-  margin-bottom: 2rem;
-  padding: 1.5rem 2rem;
+  color: #707070;
+  margin-bottom: 0rem;
+  padding: 1rem 1rem;
 }
 
 .navBar button {
