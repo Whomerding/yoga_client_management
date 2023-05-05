@@ -24,9 +24,7 @@ import image from "./Images/lotusflower_jay_castor_on_unsplash.jpg"
 function App() {
   
   return (
-    <div style={{backgroundImage: `url(${image})`,  backgroundSize: "cover",
-      height: "140vh",
-      width: "100vw"}}>
+    <div style={{backgroundImage: `url(${image})`,  backgroundSize: "cover", backgroundAttachment: "fixed"}}>
       <Navbar />
       <Routes>
         <Route

@@ -7,7 +7,7 @@ const StudioInfoDisplay = ({studio}) => {
 
 
     return ( 
-        <div>
+        <div className='info-display'>
             <h2>{studio.studio_name}</h2>
             <p>Name: {studio.first_name} {studio.last_name}</p>
             <p>Phone Number: {studio.phone_number}</p>

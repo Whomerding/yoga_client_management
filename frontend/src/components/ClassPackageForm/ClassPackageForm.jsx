@@ -45,27 +45,29 @@ const ClassPackageForm = ({studio, getAllClassPackages}) => {
       };
     
     return ( 
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label>Package Type</label>
-                <input type='text' name='package_type' value={classData.package_type} onChange={handleInputChange}/>
-            </div>
-            <div>
-                <label>Number of Classes Included in Package..if unlimited type 'unlimited'</label>
-                <input type='text' name='number_of_classes_included_in_package' value={classData.number_of_classes_included_in_package} onChange={handleInputChange}/>
-            </div>
-            <div>
-                <label>Stripe Payment URL</label>
-                <input type='url' name='stripe_payment_url' value={classData.stripe_payment_url} onChange={handleInputChange}/>
-            </div>
-            <div>
-                <label>Price</label>
-                <input type='text' name='price' value={classData.price} onChange={handleInputChange}/>
-            </div>
-            <div>
-                <button type="submit">Submit</button>
-            </div>
-        </form>
+        <div className='info-display'>
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label>Package Type</label>
+                    <input type='text' name='package_type' value={classData.package_type} onChange={handleInputChange}/>
+                </div>
+                <div>
+                    <label>Number of Classes Included in Package..if unlimited type 'unlimited'</label>
+                    <input type='text' name='number_of_classes_included_in_package' value={classData.number_of_classes_included_in_package} onChange={handleInputChange}/>
+                </div>
+                <div>
+                    <label>Stripe Payment URL</label>
+                    <input type='url' name='stripe_payment_url' value={classData.stripe_payment_url} onChange={handleInputChange}/>
+                </div>
+                <div>
+                    <label>Price</label>
+                    <input type='text' name='price' value={classData.price} onChange={handleInputChange}/>
+                </div>
+                <div>
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
      );
 };
 export default ClassPackageForm;

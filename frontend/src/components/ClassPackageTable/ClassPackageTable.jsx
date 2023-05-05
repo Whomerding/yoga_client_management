@@ -28,11 +28,11 @@ const ClassPackageTable = ({studioPackages, getAllClassPackages, studio}) => {
     console.log(`studio.id: ${studio.id}`)   
     return ( 
  
-        <table className=" table table-striped student-display-table">
+        <table className=" table table-striped studio-table">
         <thead>
             <tr>
                 <th>Package Type</th>
-                <th>Number of Classes Included</th>
+                <th>Classes Included</th>
                 <th>stripe url</th>
                 <th>Price</th>
             </tr>
@@ -43,8 +43,8 @@ const ClassPackageTable = ({studioPackages, getAllClassPackages, studio}) => {
         .map((el)=>(       
             <tr key={el.id}>
                 <td>{el.package_type}</td>
-                <td>{el.number_of_classes_included_in_package}</td>
-                <td>{el.stripe_payment_url}</td>
+                <td style={{width: "5REM"}}>{el.number_of_classes_included_in_package}</td>
+                <td style={{maxWidth:"6REM", overflow: 'scroll'}}>{el.stripe_payment_url}</td>
                 <td>{el.price}</td>  
                 <td><button style={{color:'grey', borderColor:'grey' }} onClick= {()=> deleteStudioPackage(el.id)}>Delete</button></td>  
                 {console.log(el.studio.id)}  

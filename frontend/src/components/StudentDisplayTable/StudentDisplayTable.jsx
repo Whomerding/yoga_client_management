@@ -305,7 +305,7 @@ const StudentDisplayTable = ({studio}) => {
 
     return ( 
  
-        <table className="table table-striped">
+        <table className="table table-striped studio-table" style={{padding: "2rem"}} >
         <thead>
             <tr>
                 <th>First Name</th>
@@ -332,8 +332,8 @@ const StudentDisplayTable = ({studio}) => {
                 <td >{el.current_class_package?.package_type}</td>
                 <td >{el.last_payment}</td>
                 <td >{el.payment_last_resolved}</td>
-                <td ><button onClick={()=>updateStudentFunction(el.id)}>Payment Recieved</button></td>
-                <td><button onClick= {()=> deleteStudent(el.id)}>Delete</button></td> 
+                <td ><button style={{color:"darkgrey", borderColor: "darkgrey"}}  onClick={()=>updateStudentFunction(el.id)}>Payment Recieved</button></td>
+                <td><button style={{color:"darkgrey", borderColor: "darkgrey"}} onClick= {()=> deleteStudent(el.id)}>Delete</button></td> 
                  
             </tr> 
             ))}

@@ -25,8 +25,7 @@ console.log (thirtyDaysAgo)
 console.log (inactiveStudents)
 
     return ( 
- 
-        <table class="table table-dark">
+        <table className="table table-striped studio-table">
         <thead>
             <tr>
                 <th>First Name</th>

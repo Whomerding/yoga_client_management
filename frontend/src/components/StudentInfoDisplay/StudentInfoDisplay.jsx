@@ -12,18 +12,18 @@ const StudentInfoDisplay = ({student, getStudents}) => {
 
 const getStudentClassesTaken= async () => {
     try {
-        const response = await axios.get(`http://127.0.0.1:8000/api/classestaken/`, {headers: {Authorization:"Bearer " + token}});
-        const filteredResponse = response.data.filter(el=>(el.student.id===(student.id)));
-        setStudentClassTakenInfo(filteredResponse);
+        const response = await axios.get(`http://127.0.0.1:8000/api/classestaken/?id=19`, {headers: {Authorization:"Bearer " + token}});
+        // const filteredResponse = response.data.filter(el=>(el.student.id===(student.id)));
+        // setStudentClassTakenInfo(filteredResponse);
         
-        console.log (studentClassTakenInfo)
+        console.log (response)
     } catch (error) {
         console.log(error)
     } 
 }
 
     return ( 
-        <div className='student-info-display'>
+        <div className='info-display'>
             <div>
                 <h2 style={{fontFamily: "cursive", fontSize: "2REM", textAlign:"center"}}>{student?.first_name}'s Stats</h2>
             </div>
