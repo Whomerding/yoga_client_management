@@ -55,7 +55,7 @@ const CheckInButton = ({student, getStudents}) => {
 
     return student && ( 
         <div>
-            <button onClick={handleClick}>CheckIn</button>
+            <button className="check-in-button" onClick={handleClick}>CHECK-IN</button>
         </div>
      );
 }

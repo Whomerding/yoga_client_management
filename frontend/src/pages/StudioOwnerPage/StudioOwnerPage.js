@@ -140,8 +140,7 @@ const StudioOwnerPage = () => {
           </div>
           <div>
             <h2>Students</h2>
-            <StudentDisplayTable studio={studio} 
-            />
+            <StudentDisplayTable studio={studio} />
           </div>
           <div>
             <h2>Current Class Packages</h2>

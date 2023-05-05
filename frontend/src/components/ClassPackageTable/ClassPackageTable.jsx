@@ -28,7 +28,7 @@ const ClassPackageTable = ({studioPackages, getAllClassPackages, studio}) => {
     console.log(`studio.id: ${studio.id}`)   
     return ( 
  
-        <table class="table table-dark">
+        <table className=" table table-striped student-display-table">
         <thead>
             <tr>
                 <th>Package Type</th>
@@ -46,7 +46,7 @@ const ClassPackageTable = ({studioPackages, getAllClassPackages, studio}) => {
                 <td>{el.number_of_classes_included_in_package}</td>
                 <td>{el.stripe_payment_url}</td>
                 <td>{el.price}</td>  
-                <td><button onClick= {()=> deleteStudioPackage(el.id)}>Delete</button></td>  
+                <td><button style={{color:'grey', borderColor:'grey' }} onClick= {()=> deleteStudioPackage(el.id)}>Delete</button></td>  
                 {console.log(el.studio.id)}  
             </tr> 
             ))}

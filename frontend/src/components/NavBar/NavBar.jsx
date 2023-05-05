@@ -8,7 +8,7 @@ const Navbar = () => {
   const { logoutUser, user } = useContext(AuthContext);
   const navigate = useNavigate();
   return (
-    <div className="navBar">
+    <div className="navBar" style={{paddingBottom: "3px", paddingTop: "3px"}}>
       <ul>
         <li className="brand">
           <Link to="/" style={{ textDecoration: "none", color: '#707070' }}>

@@ -1,7 +1,7 @@
 // General Imports
 import { Routes, Route } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-
 // Pages Imports
 import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
@@ -25,8 +25,8 @@ function App() {
   
   return (
     <div style={{backgroundImage: `url(${image})`,  backgroundSize: "cover",
-      height: "10",
-      width: "100%"}}>
+      height: "140vh",
+      width: "100vw"}}>
       <Navbar />
       <Routes>
         <Route

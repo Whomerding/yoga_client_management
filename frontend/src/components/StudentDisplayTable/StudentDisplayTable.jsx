@@ -293,18 +293,19 @@ const StudentDisplayTable = ({studio}) => {
       
       const deleteStudent = async(id) => {
           await axios.delete(`http://127.0.0.1:8000/api/student/${id}/`, {headers: {Authorization:"Bearer " + token}}).then(()=> getAllStudents())
+            getAllStudents()
         }
         
         const updateStudentFunction = async (id)=> {   
-
                 await axios.patch(`http://127.0.0.1:8000/api/student/update/${id}/`, updateStudent, {headers: {Authorization:"Bearer " + token}});
                 console.log("student info updated")
+                getAllStudents()
             } 
             
 
     return ( 
  
-        <table class="table table-dark">
+        <table className="table table-striped">
         <thead>
             <tr>
                 <th>First Name</th>
@@ -315,21 +316,23 @@ const StudentDisplayTable = ({studio}) => {
                 <th>Package Type</th>
                 <th>Payment Last Initiated</th>
                 <th>Payment Last Recieved</th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
         {students.filter((el) => el.studio.id === studio_id) 
         .map((el)=>(       
             <tr key={el.id}>
-                <td>{el.first_name}</td>
-                <td>{el.last_name}</td>
-                <td>{el.phone_number}</td>
-                <td>{el.email}</td>
-                <td>{el.address}</td>
-                <td>{el.current_class_package?.package_type}</td>
-                <td>{el.last_payment}</td>
-                <td>{el.payment_last_resolved}</td>
-                <td><button onClick={()=>updateStudentFunction(el.id)}>Payment Recieved</button></td>
+                <td >{el.first_name}</td>
+                <td >{el.last_name}</td>
+                <td >{el.phone_number}</td>
+                <td >{el.email}</td>
+                <td >{el.address}</td>
+                <td >{el.current_class_package?.package_type}</td>
+                <td >{el.last_payment}</td>
+                <td >{el.payment_last_resolved}</td>
+                <td ><button onClick={()=>updateStudentFunction(el.id)}>Payment Recieved</button></td>
                 <td><button onClick= {()=> deleteStudent(el.id)}>Delete</button></td> 
                  
             </tr> 
