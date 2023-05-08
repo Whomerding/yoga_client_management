@@ -1,7 +1,7 @@
 // General Imports
 import { Routes, Route } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-
 // Pages Imports
 import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
@@ -20,13 +20,16 @@ import PrivateRoute from "./utils/PrivateRoute";
 
 // Images
 import image from "./Images/lotusflower_jay_castor_on_unsplash.jpg"
+import image1 from "./Images/Untitled_design.jpg"
+import image2 from "./Images/edited_flower.jpg"
+import image3 from "./Images/flower-isolated.png"
 
 function App() {
   
   return (
-    <div style={{backgroundImage: `url(${image})`,  backgroundSize: "cover",
-      height: "10",
-      width: "100%"}}>
+    <div className="app"
+    // style={{backgroundImage: `url(${image1})`, backgroundSize: "cover", backgroundAttachment: "fixed"}}
+    >
       <Navbar />
       <Routes>
         <Route
@@ -45,6 +48,7 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
       </Routes>
+      <img className="flower-pic" src={image3} alt="lotus flower" />
     </div>
   );
 }

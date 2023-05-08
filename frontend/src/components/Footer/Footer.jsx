@@ -1,9 +1,13 @@
 import "./Footer.css";
 
-const Footer = () => {
+const Footer = ({studio}) => {
   return (
-    <footer>
-      <p>Copyright © 2022</p>{" "}
+    <footer className="footer">
+      <ul style={{display: "flex", flexDirection: "column"}}>
+      <li>{studio.studio_name} {studio.address}</li>
+      <li>{studio.phone_number}</li>
+      <li>{studio.email}</li>
+      </ul>
     </footer>
   );
 };

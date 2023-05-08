@@ -54,7 +54,7 @@ const StudentForm = () => {
       };
 
     return ( 
-        <form onSubmit={handleSubmit}>
+        <form style={{color: "whitesmoke", margin: "auto", maxWidth: "11REM", textAlign: "center"}} onSubmit={handleSubmit}>
             <div>
                 <label>
                     Select Your Studio

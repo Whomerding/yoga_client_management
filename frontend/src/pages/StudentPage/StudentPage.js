@@ -6,7 +6,7 @@ import StudentForm from '../../components/StudentForm/StudentForm';
 import StudentInfoDisplay from '../../components/StudentInfoDisplay/StudentInfoDisplay';
 import CheckInButton from '../../components/CheckInButton/CheckInButton';
 import ClassList from '../../components/ClassList/ClassList';
-
+import Footer from "../../components/Footer/Footer"
 const StudentPage = () => {
     const [user, token] = useAuth ();
     const [studioPackages, setStudioPackages]=useState([[
@@ -124,15 +124,18 @@ const StudentPage = () => {
 
     return student && ( 
         <div>
-            <div>
-                <StudentInfoDisplay student={student}/>
-            </div> 
-            <div> 
+            {/* <div> 
               <CheckInButton student={student}  getStudents={getStudents} />
-            </div>
+            </div> */}
+            <div>
+                <StudentInfoDisplay student={student} setStudent= {setStudent} getStudents={getStudents}/>
+            </div> 
             <div>
               <ClassList student={student}  studioPackages={studioPackages} getStudents={getStudents} />
             </div> 
+            <div>
+                <Footer studio= {student.studio}/>
+            </div>
 
         </div>
      );

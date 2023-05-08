@@ -14,19 +14,17 @@ const StudentDisplayTable = ({studio}) => {
     useEffect(()=> {
         getInactiveStudents();  
     }, [studio]);
-    
+    console.log (inactiveStudents)
     async function getInactiveStudents() {
         const response = await axios.get('http://127.0.0.1:8000/api/student/' );
         const filteredResponse = response.data.filter((el)=>Date.parse(el.last_class_taken) <= Date.parse(thirtyDaysAgo))
         setInactiveStudents(filteredResponse);
     }
         
-console.log (thirtyDaysAgo)
-console.log (inactiveStudents)
+
 
     return ( 
- 
-        <table class="table table-dark">
+        <table className="table table-striped studio-table">
         <thead>
             <tr>
                 <th>First Name</th>
@@ -35,6 +33,7 @@ console.log (inactiveStudents)
                 <th>Email</th>
                 <th>Address</th>
                 <th>Package Type</th>
+                <th>Last Class Taken</th>
             </tr>
         </thead>
         <tbody>
@@ -47,7 +46,8 @@ console.log (inactiveStudents)
                 <td>{el.phone_number}</td>
                 <td>{el.email}</td>
                 <td>{el.address}</td>
-                <td>{el.current_class_package}</td>
+                <td>{el?.current_class_package.package_type}</td>
+                <td>{el?.last_class_taken}</td>
             </tr> 
             ))}
         </tbody>

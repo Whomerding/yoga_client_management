@@ -48,7 +48,7 @@ const StudioOwnerForm = ({userData}) => {
       };
     
     return ( 
-        <form onSubmit={handleSubmit}>
+        <form style={{color: "whitesmoke", margin: "auto", maxWidth: "11REM", textAlign: "center"}} onSubmit={handleSubmit}>
             <div>
                 <label>Studio Name</label>
                 <input type='text' name='studio_name' value={studioData.studio_name} onChange={handleInputChange}/>

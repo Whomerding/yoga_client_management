@@ -11,9 +11,7 @@ from datetime import date, timedelta
 def class_log(request):
     if request.method == "GET":
         startdate=date.today()
-        print(startdate)
         thirty_days_ago=startdate-timedelta(days=30)
-        print (thirty_days_ago)
         active_student=request.query_params.get('active')
         students_classes_taken=request.query_params.get('id')
         sort=request.query_params.get('sort')

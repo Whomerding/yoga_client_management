@@ -284,7 +284,7 @@ const StudentDisplayTable = ({studio}) => {
 
     useEffect(()=> {
           getAllStudents();  
-      }, []);
+      }, [students.last_payment, studio]);
     
     async function getAllStudents() {
         const response = await axios.get(`http://127.0.0.1:8000/api/student/`);
@@ -293,18 +293,19 @@ const StudentDisplayTable = ({studio}) => {
       
       const deleteStudent = async(id) => {
           await axios.delete(`http://127.0.0.1:8000/api/student/${id}/`, {headers: {Authorization:"Bearer " + token}}).then(()=> getAllStudents())
+            getAllStudents()
         }
         
         const updateStudentFunction = async (id)=> {   
-
                 await axios.patch(`http://127.0.0.1:8000/api/student/update/${id}/`, updateStudent, {headers: {Authorization:"Bearer " + token}});
                 console.log("student info updated")
+                getAllStudents()
             } 
             
-
+console.log (students)
     return ( 
  
-        <table class="table table-dark">
+        <table className="table table-striped studio-table" style={{padding: "2rem"}} >
         <thead>
             <tr>
                 <th>First Name</th>
@@ -313,24 +314,28 @@ const StudentDisplayTable = ({studio}) => {
                 <th>Email</th>
                 <th>Address</th>
                 <th>Package Type</th>
+                <th>Classes Remaining</th>
                 <th>Payment Last Initiated</th>
                 <th>Payment Last Recieved</th>
+                <th>Click to Recieve Payment</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
         {students.filter((el) => el.studio.id === studio_id) 
         .map((el)=>(       
             <tr key={el.id}>
-                <td>{el.first_name}</td>
-                <td>{el.last_name}</td>
-                <td>{el.phone_number}</td>
-                <td>{el.email}</td>
-                <td>{el.address}</td>
-                <td>{el.current_class_package?.package_type}</td>
-                <td>{el.last_payment}</td>
-                <td>{el.payment_last_resolved}</td>
-                <td><button onClick={()=>updateStudentFunction(el.id)}>Payment Recieved</button></td>
-                <td><button onClick= {()=> deleteStudent(el.id)}>Delete</button></td> 
+                <td >{el.first_name}</td>
+                <td >{el.last_name}</td>
+                <td >{el.phone_number}</td>
+                <td >{el.email}</td>
+                <td style={{maxHeight: "1REM", overflow: "scroll"}}>{el.address}</td>
+                <td >{el?.current_class_package?.package_type}</td>
+                <td>{el?.classes_remaining}</td>
+                <td >{el?.last_payment}</td>
+                <td >{el?.payment_last_resolved}</td>
+                <td ><button style={{color:"darkgrey", borderColor: "darkgrey"}}  onClick={()=>updateStudentFunction(el.id)}>$$Recieved</button></td>
+                <td><button style={{color:"darkgrey", borderColor: "darkgrey"}} onClick= {()=> deleteStudent(el.id)}>Delete</button></td> 
                  
             </tr> 
             ))}
