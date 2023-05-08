@@ -9,7 +9,7 @@ import image3 from '../Images/mor-shani-5f6VXsk25OQ-unsplash.jpg';
 import image4 from '../Images/outsidethccn-dsgn-YDaGY4bl2aE-unsplash.jpg';
 import image5 from '../Images/tabitha-turner-qtr0Lw4fMGc-unsplash.jpg';
 import image6 from '../Images/wesley-tingey--nZynZmR3Ls-unsplash.jpg';
-import image7 from '../Images/yannic-laderach-Dqx4XWuXu7w-unsplash.jpg'
+import image7 from '../Images/yannic-laderach-Dqx4XWuXu7w-unsplash.jpg';
 
 const ClassInfoCard = ({singlePackage, student, getStudents}) => {
     const [user, token]=useAuth()
@@ -24,6 +24,17 @@ const ClassInfoCard = ({singlePackage, student, getStudents}) => {
         current_class_package_id: singlePackage.id,
         classes_remaining: student.classes_remaining + singlePackage.number_of_classes_included_in_package
     })},[student])
+    
+    
+  
+    function getRandomImage () {
+        // const nextIndex = (currentIndex+1) % images.length;
+        // setCurrentIndex(nextIndex);
+        // return images[nextIndex];
+
+        const randomIndex = Math.floor(Math.random() * images.length);
+        return images[randomIndex];
+    };
     
     
   
@@ -48,6 +59,7 @@ const ClassInfoCard = ({singlePackage, student, getStudents}) => {
             console.log(error)
         } 
     }
+
 
 
    

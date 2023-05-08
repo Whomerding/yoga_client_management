@@ -294,11 +294,13 @@ const StudentDisplayTable = ({studio}) => {
       const deleteStudent = async(id) => {
           await axios.delete(`http://127.0.0.1:8000/api/student/${id}/`, {headers: {Authorization:"Bearer " + token}}).then(()=> getAllStudents())
             getAllStudents()
+            getAllStudents()
         }
         
         const updateStudentFunction = async (id)=> {   
                 await axios.patch(`http://127.0.0.1:8000/api/student/update/${id}/`, updateStudent, {headers: {Authorization:"Bearer " + token}});
                 console.log("student info updated")
+                getAllStudents()
                 getAllStudents()
             } 
             

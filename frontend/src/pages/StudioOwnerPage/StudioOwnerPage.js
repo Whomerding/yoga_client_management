@@ -128,9 +128,6 @@ const StudioOwnerPage = () => {
   }
 
 
-  
-
-
     return ( 
         <div className='container-fluid'>
           <div className="row">
@@ -160,6 +157,33 @@ const StudioOwnerPage = () => {
           </div>
           <div>
             <Footer studio={studio}/>
+          </div>
+        </div>
+        <div className='container-fluid'>
+          <div className="row">
+            <div class="col">
+              <h2>Studio Info</h2>
+              <div>
+                <StudioInfoDisplay studio={studio}/>
+              </div>
+              <div>
+                <h2>Class Packages</h2>
+                <ClassPackageForm studio={studio} getAllClassPackages={getAllClassPackages} />
+              </div>
+              <div>
+                <ClassPackageTable studio={studio} studioPackages={studioPackages} getAllClassPackages={getAllClassPackages}/>
+              </div>
+            </div>
+            <div class='col'>
+              <div>
+                <h2>Students</h2>
+                <StudentDisplayTable studio={studio} />
+              </div>
+              <div>
+                <h2>Inactive Students</h2>
+                <InactiveStudentDisplay studio={studio} />
+              </div>
+            </div>
           </div>
         </div>
 

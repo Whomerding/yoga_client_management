@@ -23,7 +23,7 @@ const getStudentClassesTaken= async () => {
 }
     
     return ( 
-        <div className='student-info-display'>
+        <div className='info-display'>
             <div>
                 <h2 style={{fontFamily: "cursive", fontSize: "2REM", textAlign:"center", color: '#33404E'}}>{student?.first_name}'s Stats</h2>
             </div>
