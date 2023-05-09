@@ -1,6 +1,7 @@
 // General Imports
 import { Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 // Pages Imports
 import HomePage from "./pages/HomePage/HomePage";
@@ -30,6 +31,7 @@ function App() {
     <div className="app"
     // style={{backgroundImage: `url(${image1})`, backgroundSize: "cover", backgroundAttachment: "fixed"}}
     >
+    <img className="flower-pic" src={image3} alt="lotus flower" />
       <Navbar />
       <Routes>
         <Route
@@ -48,7 +50,6 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
       </Routes>
-      <img className="flower-pic" src={image3} alt="lotus flower" />
     </div>
   );
 }

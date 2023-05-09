@@ -7,6 +7,39 @@
   padding: 0;
   box-sizing: inherit;
 }
+a:link {
+color: black;
+text-decoration: none;
+}
+
+a:visited{
+  color: darkslategray ;
+  text-decoration: none;
+}
+
+a:hover {
+  color: goldenrod
+}
+
+
+a:link {
+color: black;
+text-decoration: none;
+}
+::placeholder {
+  color: darkolivegreen
+}
+a:visited{
+  color: darkslategray ;
+  text-decoration: none;
+}
+h2 {
+  color: whitesmoke;
+}
+a:hover {
+  color: goldenrod
+}
+
 
 a:link {
 color: black;
@@ -36,22 +69,24 @@ html {
 p {
   font-size: 20px;
   margin-bottom: 0px;
+  margin-bottom: 0px;
 }
 
 button {
   background-color: transparent;
-  border: 2px solid whitesmoke;
+  border: 2px solid darkgrey;
   color: whitesmoke;
   font-size: 1rem;
   font-family: inherit;
   padding: 0.5rem 0.5rem;
   border-radius: .5rem;
 
+
 }
 
 button:hover {
   cursor: pointer;
-  color: white;
+  color: darkgrey;
   background-color: whitesmoke;
 }
 
@@ -83,7 +118,7 @@ button:hover {
 
 .individual-class-card {
   background-color: #FFFFFF;
-  opacity: 77%;
+  opacity: 95%;
   border-radius: .5REM;
   padding: 2%;
   text-align: center;
@@ -92,21 +127,22 @@ button:hover {
   height: 20%;
 }
 
-.info-display {
+/* .info-display {
   color: #707070;
+  padding-top: 2REM;
   background-color: #FFFFFF;
   border-radius: .5REM;
   opacity: 95%;
   padding: 21px 2rem 16px 2rem;
-}
+} */
 
-.student-info-display {
+.info-display {
   color: #707070;
   background-color: #FFFFFF;
   margin: 2REM;
   border-radius: .5REM;
   padding: 2rem;
-  opacity: 95%;
+  opacity: 90%;
 }
 .check-in-button {
   margin: 1rem 25% 1rem;
@@ -122,7 +158,7 @@ button:hover {
   padding: 2REM;
   border-radius: .5REM;
   padding: 2rem;
-  opacity: 95%;
+  opacity: 90%;
 }
 
 #root {
@@ -140,3 +176,17 @@ button:hover {
 .footer {
   color: whitesmoke
 }
+.check-in-button {
+  margin: 2rem 25% 1rem;
+  width: 50%;
+  font-size: 1.25rem;
+}
+/* 
+.studio-table {
+  color: #707070;
+  background-color: #FFFFFF;
+  padding: 2REM;
+  border-radius: .5REM;
+  padding: 2rem;
+  opacity: 95%;
+} */

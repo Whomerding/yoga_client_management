@@ -9,102 +9,107 @@ import ClassList from '../../components/ClassList/ClassList';
 import Footer from "../../components/Footer/Footer"
 const StudentPage = () => {
     const [user, token] = useAuth ();
-    const [studioPackages, setStudioPackages]=useState([[
-        {
-            "id": 29,
-            "package_type": "drop in class",
-            "price": "25.00",
-            "stripe_payment_url": "https://buy.stripe.com/test_6oEaGrcwH8jYc80cMM",
-            "number_of_classes_included_in_package": 1,
-            "studio": {
-                "id": 22,
-                "studio_name": "TEST3 Studio",
-                "first_name": "TEST3",
-                "last_name": "TEST3",
-                "address": "TEST3 Address",
-                "phone_number": 3452134567,
-                "email": "TEST3@TEST.COM"
-            }
-        },
-        {
-            "id": 30,
-            "package_type": "5 Class Pass",
-            "price": "100.00",
-            "stripe_payment_url": "https://buy.stripe.com/test_fZedSD54f1VA9ZS6op",
-            "number_of_classes_included_in_package": 5,
-            "studio": {
-                "id": 22,
-                "studio_name": "TEST3 Studio",
-                "first_name": "TEST3",
-                "last_name": "TEST3",
-                "address": "TEST3 Address",
-                "phone_number": 3452134567,
-                "email": "TEST3@TEST.COM"
-            }
-        },
-        {
-            "id": 31,
-            "package_type": "10 Class Pass",
-            "price": "190.00",
-            "stripe_payment_url": "https://buy.stripe.com/test_28og0L40b43I4Fy6oq",
-            "number_of_classes_included_in_package": 10,
-            "studio": {
-                "id": 22,
-                "studio_name": "TEST3 Studio",
-                "first_name": "TEST3",
-                "last_name": "TEST3",
-                "address": "TEST3 Address",
-                "phone_number": 3452134567,
-                "email": "TEST3@TEST.COM"
-            }
-        }
-    ]]);
-    const [student, setStudent]=useState ({
-        "id": 19,
-        "first_name": "TESTSTUDENT1",
-        "last_name": "TESTSTUDENT1",
-        "date_joined": "2023-05-01",
-        "last_payment": "2023-01-02",
-        "address": "Student Address",
-        "phone_number": 3058675309,
-        "email": "TESTSTUDENT1@TEST.COM",
-        "classes_remaining": 10,
-        "last_class_taken": "2023-05-02",
-        "studio": {
-            "id": 22,
-            "studio_name": "TEST3 Studio",
-            "first_name": "TEST3",
-            "last_name": "TEST3",
-            "address": "TEST3 Address",
-            "phone_number": 3452134567,
-            "email": "TEST3@TEST.COM"
-        },
-        "current_class_package": {
-            "id": 30,
-            "package_type": "5 Class Pass",
-            "number_of_classes_included_in_package": "5",
-            "price": "100.00",
-            "stripe_payment_url": "https://buy.stripe.com/test_fZedSD54f1VA9ZS6op",
-            "studio": {
-                "id": 22,
-                "studio_name": "TEST3 Studio",
-                "first_name": "TEST3",
-                "last_name": "TEST3",
-                "address": "TEST3 Address",
-                "phone_number": 3452134567,
-                "email": "TEST3@TEST.COM"
-            }
-        }
-    });
+    const [studioPackages, setStudioPackages]=useState();
+    const [student, setStudent]=useState ();
+    // const [studioPackages, setStudioPackages]=useState([[
+    //     {
+    //         "id": 29,
+    //         "package_type": "drop in class",
+    //         "price": "25.00",
+    //         "stripe_payment_url": "https://buy.stripe.com/test_6oEaGrcwH8jYc80cMM",
+    //         "number_of_classes_included_in_package": 1,
+    //         "studio": {
+    //             "id": 22,
+    //             "studio_name": "TEST3 Studio",
+    //             "first_name": "TEST3",
+    //             "last_name": "TEST3",
+    //             "address": "TEST3 Address",
+    //             "phone_number": 3452134567,
+    //             "email": "TEST3@TEST.COM"
+    //         }
+    //     },
+    //     {
+    //         "id": 30,
+    //         "package_type": "5 Class Pass",
+    //         "price": "100.00",
+    //         "stripe_payment_url": "https://buy.stripe.com/test_fZedSD54f1VA9ZS6op",
+    //         "number_of_classes_included_in_package": 5,
+    //         "studio": {
+    //             "id": 22,
+    //             "studio_name": "TEST3 Studio",
+    //             "first_name": "TEST3",
+    //             "last_name": "TEST3",
+    //             "address": "TEST3 Address",
+    //             "phone_number": 3452134567,
+    //             "email": "TEST3@TEST.COM"
+    //         }
+    //     },
+    //     {
+    //         "id": 31,
+    //         "package_type": "10 Class Pass",
+    //         "price": "190.00",
+    //         "stripe_payment_url": "https://buy.stripe.com/test_28og0L40b43I4Fy6oq",
+    //         "number_of_classes_included_in_package": 10,
+    //         "studio": {
+    //             "id": 22,
+    //             "studio_name": "TEST3 Studio",
+    //             "first_name": "TEST3",
+    //             "last_name": "TEST3",
+    //             "address": "TEST3 Address",
+    //             "phone_number": 3452134567,
+    //             "email": "TEST3@TEST.COM"
+    //         }
+    //     }
+    // ]]);
+    // const [student, setStudent]=useState (
+    //     {
+    //     "id": 19,
+    //     "first_name": "TESTSTUDENT1",
+    //     "last_name": "TESTSTUDENT1",
+    //     "date_joined": "2023-05-01",
+    //     "last_payment": "2023-01-02",
+    //     "address": "Student Address",
+    //     "phone_number": 3058675309,
+    //     "email": "TESTSTUDENT1@TEST.COM",
+    //     "classes_remaining": 10,
+    //     "last_class_taken": "2023-05-02",
+    //     "studio": {
+    //         "id": 22,
+    //         "studio_name": "TEST3 Studio",
+    //         "first_name": "TEST3",
+    //         "last_name": "TEST3",
+    //         "address": "TEST3 Address",
+    //         "phone_number": 3452134567,
+    //         "email": "TEST3@TEST.COM"
+    //     },
+    //     "current_class_package": {
+    //         "id": 30,
+    //         "package_type": "5 Class Pass",
+    //         "number_of_classes_included_in_package": "5",
+    //         "price": "100.00",
+    //         "stripe_payment_url": "https://buy.stripe.com/test_fZedSD54f1VA9ZS6op",
+    //         "studio": {
+    //             "id": 22,
+    //             "studio_name": "TEST3 Studio",
+    //             "first_name": "TEST3",
+    //             "last_name": "TEST3",
+    //             "address": "TEST3 Address",
+    //             "phone_number": 3452134567,
+    //             "email": "TEST3@TEST.COM"
+    //         }
+    //     }
+    // }
+    // );
     
     useEffect(()=> {
             getStudents();
             getAllClassPackages();
-    }, []);
+    }, [token]);
     
 
     async function getStudents() {      
       try {
+        debugger
         const response = await axios.get(`http://127.0.0.1:8000/api/student/`)
         const filteredStudent = response.data.filter(el=>(el.email.toLowerCase()===(user.email.toLowerCase())));
         const student = filteredStudent[0]
@@ -122,7 +127,7 @@ const StudentPage = () => {
     console.log(student)
     console.log(studioPackages)
 
-    return student && ( 
+    return student && studioPackages ? ( 
         <div>
             {/* <div> 
               <CheckInButton student={student}  getStudents={getStudents} />
@@ -138,7 +143,7 @@ const StudentPage = () => {
             </div>
 
         </div>
-     );
+     ):<div>Loading...</div>
 }
  
 export default StudentPage;

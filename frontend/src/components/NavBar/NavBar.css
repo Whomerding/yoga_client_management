@@ -11,7 +11,8 @@ span {
   color: #F8F8FA;
 }
 .navBar {
-  background: #DFE5DA;
+  /* background: #DFE5DA; */
+  background: #E7CBDD;
   box-shadow: 4px 2px 5px gray;
   color: #707070;
   margin-bottom: 0rem;

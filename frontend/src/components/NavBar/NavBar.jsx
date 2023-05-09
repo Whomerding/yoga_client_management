@@ -7,7 +7,7 @@ import "./NavBar.css";
 const Navbar = () => {
   const { logoutUser, user } = useContext(AuthContext);
   const navigate = useNavigate();
-  return (
+  return  (
     <div className="navBar" style={{paddingBottom: "3px", paddingTop: "3px"}}>
       <ul>
         <li className="brand">
@@ -26,5 +26,4 @@ const Navbar = () => {
     </div>
   );
 };
-
 export default Navbar;

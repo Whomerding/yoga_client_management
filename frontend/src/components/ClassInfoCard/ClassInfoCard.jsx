@@ -16,7 +16,7 @@ const ClassInfoCard = ({singlePackage, student, getStudents}) => {
     var today = format(new Date(), 'yyyy-MM-dd');
     const student_id=student?.id
     const [studentUpdate, setStudentUpdate]=useState()
-    const [index, setIndex] = useState(0)
+    // const [index, setIndex] = useState(0)
     const images = [image0, image1, image2, image3, image4, image5, image6, image7 ]
 
     useEffect(()=>{setStudentUpdate({
@@ -37,15 +37,6 @@ const ClassInfoCard = ({singlePackage, student, getStudents}) => {
     };
     
     
-  
-    function getRandomImage () {
-    
-        // setIndex((index+1) % images.length);
-        // return images[index];
-        const randomIndex = Math.floor(Math.random() * images.length);
-        return images[randomIndex];
-    };
-   console.log (student)
     const handleClick = async (event)=> {   
         console.log(studentUpdate)
         console.log ("classes remaining: "+ student.classes_remaining)

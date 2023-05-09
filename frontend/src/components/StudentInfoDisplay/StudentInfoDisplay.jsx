@@ -9,13 +9,14 @@ const StudentInfoDisplay = ({student, getStudents, setStudent}) => {
     const [studentClassTakenInfo, setStudentClassTakenInfo]=useState([]);
     useEffect(()=> {
         getStudentClassesTaken()
-}, [student, student.current_class_package ]);
+}, [student ]);
 
 const getStudentClassesTaken= async () => {
     try {
         const response = await axios.get(`http://127.0.0.1:8000/api/classestaken/?id=${student.id}`, {headers: {Authorization:"Bearer " + token}});
         // const filteredResponse = response.data.filter(el=>(el.student.id===(student.id)));
         setStudentClassTakenInfo(response.data);
+        
         
     } catch (error) {
         console.log(error)
